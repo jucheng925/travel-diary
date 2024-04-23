@@ -8,11 +8,13 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(15), unique=True, nullable=False)
+    username = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String)
-    email = db.Column(db.String)
+    email = db.Column(db.String, nullable=False)
     profile_pic = db.Column(db.String)
-    age = db.Column(db.Integer)
+
+    # if have time, include a children theme
+    # age = db.Column(db.Integer)
 
     # stores = db.relationship('Store', back_populates='owner', cascade='all, delete-orphan')
 
@@ -45,7 +47,7 @@ class User(db.Model, SerializerMixin):
     @validates('email')
     def validate_email(self, key, email):
         if '@' not in email:
-            raise ValueError("Failed simple email validation")
+            raise ValueError("Email must be a valid email")
         return email
 
     def __repr__(self):
