@@ -1,20 +1,21 @@
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext({});
 
 const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const navigate = useNavigate()
   
     const login = (user) => {
       setCurrentUser(user)
     }
   
     const logout = () => {
-      setCurrentUser(null);
-      navigate("/")
+      fetch("/api/logout", {
+        method: "DELETE",
+        })
+        .then(() => setCurrentUser(null))
     }
+    
 
     return (
         <UserContext.Provider 
