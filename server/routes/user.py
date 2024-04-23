@@ -22,8 +22,8 @@ class Signup(Resource):
 
         return user.to_dict(), 201
     
-    except IntegrityError as err:
-       return {"error": f'{err.orig}'}, 422
+    except IntegrityError:
+       return {"error": "Username already exists"}, 422
     except ValueError as err:
        return {"error" : str(err)}, 422
        
