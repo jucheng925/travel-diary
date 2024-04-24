@@ -11,5 +11,10 @@ class Attendance(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     trip_id = db.Column(db.Integer, db.ForeignKey('trips.id'))
 
+    user = db.relationship('User', back_populates='attendances')
+    trip = db.relationship('Trip', back_populates='attendances')
+
+    serialize_rules=('-user.attendances', '-trip.attendances')
+
     def __repr__(self):
         return f'<Attendance {self.id} on {self.start_date}/>'

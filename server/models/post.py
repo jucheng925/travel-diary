@@ -15,5 +15,10 @@ class Post(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     trip_id = db.Column(db.Integer, db.ForeignKey('trips.id'))
 
+    user = db.relationship('User', back_populates='posts')
+    trip = db.relationship('Trip', back_populates='posts')
+
+    serialize_rules=('-user.posts', '-trip.posts')
+
     def __repr__(self):
         return f'<Post {self.id} {self.title}>'

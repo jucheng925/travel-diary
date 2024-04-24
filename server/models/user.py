@@ -16,12 +16,14 @@ class User(db.Model, SerializerMixin):
     # if have time, include a children theme
     # age = db.Column(db.Integer)
 
-    # stores = db.relationship('Store', back_populates='owner', cascade='all, delete-orphan')
+    attendances = db.relationship('Attendance', back_populates='user', cascade='all, delete-orphan')
 
-    # purchases = db.relationship('Purchase', back_populates='user')
-    # items = association_proxy('purchases', 'item')
+    posts = db.relationship('Post', back_populates='user', cascade='all, delete-orphan')
 
-    # serialize_rules = ('-stores.owner',  )
+    trips = association_proxy('attendances', 'user')
+    
+
+    serialize_rules = ('-attendances.user', '-posts.user' )
 
     @hybrid_property
     def password_hash(self):
