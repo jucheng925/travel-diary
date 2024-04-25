@@ -1,3 +1,4 @@
+import datetime
 from config import app, db
 
 from models.models import *
@@ -41,6 +42,25 @@ if __name__ == "__main__":
     db.session.add_all(trips)
 
     db.session.commit()
+
+    print("Creating attendances ...")
+
+    bob_trip1 = Attendance(user=bob, trip=trip1, start_date=datetime.date(2024, 2, 11), end_date=datetime.date(2024, 3, 11))
+
+    susan_trip1 = Attendance(user=susan, trip=trip1, start_date=datetime.date(2024, 2, 11), end_date=datetime.date(2024, 3, 11))
+
+    bob_trip2 = Attendance(user=bob, trip=trip2, start_date=datetime.date(2023, 12, 2), end_date=datetime.date(2023, 12, 11))
+
+    kim_trip2 = Attendance(user=kim, trip=trip2, start_date=datetime.date(2023, 12, 2), end_date=datetime.date(2023, 12, 11))
+
+    kim_trip3 = Attendance(user=kim, trip=trip3, start_date=datetime.date(2021, 7, 29), end_date=datetime.date(2021, 8, 11))
+
+    attendances=[bob_trip1, susan_trip1, bob_trip2, kim_trip2, kim_trip3]
+
+    db.session.add_all(attendances)
+
+    db.session.commit()
+
 
 
 

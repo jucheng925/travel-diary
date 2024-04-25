@@ -6,8 +6,8 @@ from config import db
 class Attendance(db.Model, SerializerMixin):
     __tablename__ = 'attendances'
     id = db.Column(db.Integer, primary_key = True)
-    start_date = db.Column(db.DateTime, nullable=False)
-    end_date = db.Column(db.DateTime)
+    start_date = db.Column(db.Date, nullable=False)
+    end_date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     trip_id = db.Column(db.Integer, db.ForeignKey('trips.id'))
 
@@ -24,3 +24,9 @@ class Attendance(db.Model, SerializerMixin):
         if not start_date:
             raise ValueError("Start Date must be included")
         return start_date
+    
+    @validates("end_date")
+    def check_end_date(self, key, end_date):
+        if end_date < self.start_date:
+            raise ValueError("End date must be after or equal to Start Date")
+        return end_date
