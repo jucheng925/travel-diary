@@ -28,3 +28,19 @@ if __name__ == "__main__":
 
     db.session.commit()
 
+    print("Creating trips ...")
+
+    trip1 = Trip(country="Japan", city_state="Tokyo", vacation_type="Sightseeing", public=True)
+
+    trip2 = Trip(country="USA", city_state="Los Angeles", vacation_type="Family")
+
+    trip3 = Trip(country="Iceland", vacation_type="Adventure")
+
+    trips = [trip1, trip2, trip3]
+
+    db.session.add_all(trips)
+
+    db.session.commit()
+
+
+

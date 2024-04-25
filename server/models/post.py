@@ -22,3 +22,9 @@ class Post(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Post {self.id} {self.title}>'
+    
+    @validates("feeling_score")
+    def check_feeling_score(self, key, feeling_score):
+        if feeling_score < 0 or feeling_score > 10:
+            raise ValueError("Feeling Score must be between 0 and 10")
+        return feeling_score

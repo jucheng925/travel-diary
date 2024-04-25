@@ -3,7 +3,7 @@ from flask import request, session
 from sqlalchemy.exc import IntegrityError
 
 from config import db, api
-from models.models import *
+from models.models import User
 
 class Signup(Resource):
   def post(self):

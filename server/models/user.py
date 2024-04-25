@@ -17,12 +17,9 @@ class User(db.Model, SerializerMixin):
     # age = db.Column(db.Integer)
 
     attendances = db.relationship('Attendance', back_populates='user', cascade='all, delete-orphan')
-
     posts = db.relationship('Post', back_populates='user', cascade='all, delete-orphan')
-
     trips = association_proxy('attendances', 'user')
     
-
     serialize_rules = ('-attendances.user', '-posts.user' )
 
     @hybrid_property

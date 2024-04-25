@@ -6,7 +6,7 @@ from config import db
 class Attendance(db.Model, SerializerMixin):
     __tablename__ = 'attendances'
     id = db.Column(db.Integer, primary_key = True)
-    start_date = db.Column(db.DateTime)
+    start_date = db.Column(db.DateTime, nullable=False)
     end_date = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     trip_id = db.Column(db.Integer, db.ForeignKey('trips.id'))
@@ -18,3 +18,9 @@ class Attendance(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Attendance {self.id} on {self.start_date}/>'
+    
+    @validates("start_date")
+    def check_start_date(self, key, start_date):
+        if not start_date:
+            raise ValueError("Start Date must be included")
+        return start_date
