@@ -12,9 +12,15 @@ const Navbar = () => {
         Home
       </NavLink>
       {currentUser ? 
-        <NavLink to= "/logout" className="nav-link" onClick={logout}>
-            Logout
-        </NavLink>
+        <>
+          <NavLink to= "/profile/edit">
+            Edit Profile
+          </NavLink>
+          <NavLink to= "/logout" className="nav-link" onClick={logout}>
+              Logout
+          </NavLink>
+
+        </>
         : null }
     </nav>
   )

@@ -28,3 +28,10 @@ class Post(db.Model, SerializerMixin):
         if feeling_score < 0 or feeling_score > 10:
             raise ValueError("Feeling Score must be between 0 and 10")
         return feeling_score
+    
+    ## need to validates that the user has an attendance to the trip
+    # @validates("trip")
+    # def check_trip(self, key, trip):
+    #     print(self.user)
+    #     print(trip)
+    #     return trip

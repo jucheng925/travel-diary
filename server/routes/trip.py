@@ -9,7 +9,7 @@ class Trips(Resource):
         trips = Trip.query.all()
         trips_dict = [trip.to_dict() for trip in trips]
         return trips_dict, 200
-    
+
 api.add_resource(Trips, '/api/trips')
 
 class TripById(Resource):

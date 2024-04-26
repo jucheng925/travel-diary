@@ -14,10 +14,10 @@ if __name__ == "__main__":
 
     print("Creating users ...")
 
-    bob = User(username='bob', email="bob123@gmail.com")
+    bob = User(username='bob', email="bob123@gmail.com", profile_pic="profile/cool-profile-pic_kqpbat")
     bob.password_hash = "test"
 
-    susan = User(username='susan', email="susan123@gmail.com")
+    susan = User(username='susan', email="susan123@gmail.com", profile_pic="profile/aiony-haust-3TLl_97HNJo-unsplash_tabhts")
     susan.password_hash = "test"
 
     kim = User(username='kim', email="kim234@gmail.com") 
@@ -58,6 +58,14 @@ if __name__ == "__main__":
     attendances=[bob_trip1, susan_trip1, bob_trip2, kim_trip2, kim_trip3]
 
     db.session.add_all(attendances)
+
+    db.session.commit()
+
+    print("Creating posts ...")
+
+    post1 = Post(title="Test post", body="This is my first post", user=bob, trip=trip1, feeling_score=2)
+
+    db.session.add(post1)
 
     db.session.commit()
 

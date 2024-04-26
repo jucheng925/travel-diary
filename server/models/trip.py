@@ -17,7 +17,7 @@ class Trip(db.Model, SerializerMixin):
     posts = db.relationship('Post', back_populates='trip', cascade='all, delete-orphan')
     users = association_proxy('attendances', 'users')
 
-    serialize_rules=('-attendances.trip', '-posts.trip')
+    serialize_rules=('-attendances.trip', '-attendances.user.posts', '-posts.trip', '-posts.user.attendances')
 
     def __repr__(self):
         return f'<Trip {self.id} {self.country}>'

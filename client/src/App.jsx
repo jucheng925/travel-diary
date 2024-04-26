@@ -5,6 +5,7 @@ import Home from "../components/Home"
 import Logout from "../components/Logout"
 import Signup from "../components/Signup"
 import CheckSession from "../components/CheckSession"
+import Profile from "../components/Profile"
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/signup" element={<Signup/>}/>
+          <Route path="/profile/edit" element={<Profile/>}/>
           <Route path="/logout" element = {<Logout />} />
           <Route path="/" element={<Home />} />
         </Routes>

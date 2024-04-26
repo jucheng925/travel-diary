@@ -52,8 +52,27 @@ class Logout(Resource):
    def delete(self):
       session["user_id"] = None
       return {"error": "Log out"}, 204
+   
+class UpdateCurrentUser(Resource):
+   def patch(self):
+      user = User.query.filter(User.id == session.get('user_id')).first()
+      if user:
+         try:
+            data = request.get_json()
+            for attr in data:
+               setattr(user, attr, data.get(attr))
+            db.session.add(user)
+            db.session.commit()
+            return user.to_dict(), 200 
+         except IntegrityError:
+            return {"error": "Username already exists"}, 422
+
+      else:
+         return {"error" : "Not Authorized. Please log in"}, 401
 
 
+
+api.add_resource(UpdateCurrentUser, '/api/updatecurrentuser')
 api.add_resource(Signup, '/api/signup')
 api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(Login, '/api/login')
