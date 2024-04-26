@@ -24,7 +24,7 @@ const EditProfile = () => {
   
     const checkBackendErrors = (data) => {
       if (data.error) {
-              setError(data.error)
+            setError(data.error)
       }
     }
   

@@ -10,7 +10,16 @@ const Home = () => {
       <h1>Wanderlog</h1>
 
       {currentUser ? 
-          <p><strong>Welcome, {currentUser.username}!</strong></p>
+        <>
+        <p><strong>Welcome, {currentUser.username}!</strong></p>
+        <div>
+          <h3>All Trips</h3>
+          {console.log(currentUser.attendances)}
+          {currentUser.attendances.map((attendance)=> (
+            <li>{attendance.trip.country}</li>
+          ))}
+        </div>
+        </>
           : <Login />}
     </div>
   )
