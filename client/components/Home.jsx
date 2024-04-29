@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import { Link } from 'react-router-dom'
 import Login from './Login'
 import { UserContext } from '../context/UserContext'
 import TripCard from './TripCard'
@@ -19,7 +20,9 @@ const Home = () => {
             <TripCard attendance={attendance}/>
           ))}
           <div>
+            <Link to={'/all'}>
             <p>All Trips</p>
+            </Link>
           </div>
         </div>
         </>
