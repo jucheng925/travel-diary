@@ -18,6 +18,9 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/profile/edit" element={<Profile/>}/>
+          {/* <Route path = "/trips/add" element={<TripAddForm/>} /> */}
+          {/* <Route path ="/trips/:id" element ={<TripPage/>} /> */}
+          {/* <Route patch ="/all" element={<PostList/>} /> */}
           <Route path="/logout" element = {<Logout />} />
           <Route path="/" element={<Home />} />
         </Routes>

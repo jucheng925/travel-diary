@@ -9,8 +9,8 @@ const EditProfile = () => {
     const {currentUser, updatedUser} = useContext(UserContext)
 
     const formSchema = yup.object().shape({
-      username: yup.string().required("Username is required").max(15).min(3),
-      email: yup.string().required("Email is required").email("Please provide a valid email")
+      username: yup.string().max(15).min(3),
+      email: yup.string().email("Please provide a valid email")
     });
   
     const formik = useFormik({
@@ -30,7 +30,16 @@ const EditProfile = () => {
   
       function submitform(values) {
         setError(null)
-        updatedUser(values, checkBackendErrors)
+        let resultValues = {}
+        for (let key in values) {
+          if (values[key] !== "") {
+            resultValues[key] = values[key]
+          } else {
+            resultValues[key] = currentUser[key]
+          }
+        }
+        updatedUser(resultValues, checkBackendErrors)
+        formik.resetForm()
       }
   
       const displayErrors =(error) => {
