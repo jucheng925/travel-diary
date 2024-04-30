@@ -3,10 +3,12 @@ import { useParams } from 'react-router-dom'
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
 import UploadWidget from './UploadWidget';
+import PostCard from './PostCard';
 
 const TripPage = () => {
   const params = useParams()
   const [trip, setTrip] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
 
   const cld = new Cloudinary({
     cloud: {
@@ -17,7 +19,10 @@ const TripPage = () => {
   useEffect(()=> {
     fetch(`/api/trips/${params.id}`)
     .then(resp=>resp.json())
-    .then(data => setTrip(data))
+    .then(data => {
+      setTrip(data)
+      setIsLoading(false)
+    })
   }, [])
 
   const updateTripBack = (public_id) => {
@@ -35,21 +40,26 @@ const TripPage = () => {
   
   return (
     <>
-      <div>
-        <ul>{trip.country}</ul>
-        <ul>{trip.city_state}</ul>
-        <ul>{trip.vacation_type}</ul>
-        <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
+    {isLoading ? 
+      <h1>Loading...</h1>
+    : 
+      <>
+        <div>
+          <ul>{trip.country}</ul>
+          <ul>{trip.city_state}</ul>
+          <ul>{trip.vacation_type}</ul>
+          <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
 
+          <UploadWidget uploadPreset={'trip_cover'} updateBackEnd={updateTripBack}/>
+        </div>
 
-        <UploadWidget uploadPreset={'trip_cover'} updateBackEnd={updateTripBack}/>
-
-      </div>
-      <div>
-        {trip.posts}
-      </div>
-    </>
-  )
+        <div>
+          <h3>All Posts</h3>
+          {trip.posts.map((post) => <PostCard key={post.id} post={post}/>)}
+        </div>
+      </>
+    }
+    </>)
 }
 
 export default TripPage

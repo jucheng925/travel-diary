@@ -20,7 +20,7 @@ if __name__ == "__main__":
     susan = User(username='susan', email="susan123@gmail.com", profile_pic="profile/aiony-haust-3TLl_97HNJo-unsplash_tabhts")
     susan.password_hash = "test"
 
-    kim = User(username='kim', email="kim234@gmail.com") 
+    kim = User(username='kim', email="kim234@gmail.com", profile_pic="profile/tyler_c8mxac") 
     kim.password_hash = "test"
 
     users = [bob, susan, kim]
@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     trip1 = Trip(country="Japan", city_state="Tokyo", vacation_type="Sightseeing", public=True)
 
-    trip2 = Trip(country="USA", city_state="Los Angeles", vacation_type="Family")
+    trip2 = Trip(country="USA", city_state="Los Angeles", vacation_type="Family", cover_image="trip_cover/LA_Cover_page_z8zl3c")
 
     trip3 = Trip(country="Iceland", vacation_type="Adventure")
 
@@ -64,8 +64,13 @@ if __name__ == "__main__":
     print("Creating posts ...")
 
     post1 = Post(title="Test post", body="This is my first post", user=bob, trip=trip1, feeling_score=2)
+    post2 = Post(title="First Visit", body="First Vacation and then we saw the hollywood sign", user=bob, trip=trip2, feeling_score=10)
+    post3 = Post(title="What a view", body="This is my first post", user=kim, trip=trip3, feeling_score=2)
+    post4 = Post(title="Favorite Place", body="Today, I found my favorite place on this trip", user=bob, trip=trip1, feeling_score=5)
+    post5 = Post(title="Ice cream", body="YUM YUM, icecream", user=kim, trip=trip3, feeling_score=8)
 
-    db.session.add(post1)
+
+    db.session.add_all([post1, post2, post3, post4, post5])
 
     db.session.commit()
 

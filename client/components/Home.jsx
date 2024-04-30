@@ -17,7 +17,7 @@ const Home = () => {
         <div>
           <h3>All Trips</h3>
           {currentUser.attendances.map((attendance)=> (
-            <TripCard attendance={attendance}/>
+            <TripCard key={attendance.id} attendance={attendance}/>
           ))}
           <div>
             <Link to={'/all'}>
