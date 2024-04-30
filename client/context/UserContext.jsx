@@ -33,7 +33,6 @@ const UserProvider = ({children}) => {
         }
       })
     }
-
     
     return (
         <UserContext.Provider 

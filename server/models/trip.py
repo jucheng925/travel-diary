@@ -15,7 +15,7 @@ class Trip(db.Model, SerializerMixin):
 
     attendances = db.relationship('Attendance', back_populates='trip', cascade='all, delete-orphan')
     posts = db.relationship('Post', back_populates='trip', cascade='all, delete-orphan')
-    users = association_proxy('attendances', 'users')
+    users = association_proxy('attendances', 'user')
 
     serialize_rules=('-attendances.trip', '-attendances.user.posts', '-posts.user.attendances', '-posts.trip')
     #'-attendances.user.posts',  '-posts.user.attendances'

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 const TripCard = ({attendance}) => {
   const trip = attendance.trip
-  console.log(trip)
   return (
     <div style={{backgroundColor:'lightblue'}}>
       <Link to={`/trips/${trip.id}`}>

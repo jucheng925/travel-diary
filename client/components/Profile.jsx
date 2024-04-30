@@ -29,7 +29,7 @@ const Profile = () => {
         <h3>Profile Pic</h3>
         <AdvancedImage cldImg={cld.image(currentUser.profile_pic)}/>
         
-        <UploadWidget updateBackEnd={updateBackEnd}/>
+        <UploadWidget updateBackEnd={updateBackEnd} uploadPreset={'upload_profile'}/>
         {/* <button id="upload_widget" class="cloudinary-button">Edit profile pic</button> */}
       </div>
       <Link to="/"> Return to Home Page </Link>
