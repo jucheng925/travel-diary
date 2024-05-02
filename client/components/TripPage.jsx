@@ -37,6 +37,12 @@ const TripPage = () => {
      .then(resp => resp.json())
      .then(data => setTrip(data))
     }
+
+  const sortByDate = () => {
+    let posts = trip.posts
+    posts.sort((a, b) => a.post_date - b.post_date)
+    console.log(posts)
+  }
   
   return (
     <>
@@ -55,6 +61,7 @@ const TripPage = () => {
 
         <div>
           <h3>All Posts</h3>
+          {sortByDate()}
           {trip.posts.map((post) => <PostCard key={post.id} post={post}/>)}
         </div>
       </>
