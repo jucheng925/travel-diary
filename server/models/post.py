@@ -9,6 +9,7 @@ class Post(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     post_date = db.Column(db.DateTime, server_default=func.now())
+    updated_at = db.Column(db.DateTime, onupdate=func.now())
     body = db.Column(db.String)
     photo = db.Column(db.String)
     feeling_score = db.Column(db.Integer)

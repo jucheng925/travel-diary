@@ -21,7 +21,7 @@ const Home = () => {
           ))}
           <div>
             <Link to={'/all'}>
-            <p>All Trips</p>
+            <p>All Posts</p>
             </Link>
           </div>
         </div>

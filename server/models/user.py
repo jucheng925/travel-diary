@@ -4,6 +4,7 @@ from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 
 from config import db, bcrypt
+from models.attendance import Attendance
 
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
@@ -18,7 +19,7 @@ class User(db.Model, SerializerMixin):
 
     attendances = db.relationship('Attendance', back_populates='user', cascade='all, delete-orphan')
     posts = db.relationship('Post', back_populates='user', cascade='all, delete-orphan')
-    trips = association_proxy('attendances', 'trip')
+    trips = association_proxy('attendances', 'trip', creator=lambda trip_obj: Attendance(trip=trip_obj))
     
     serialize_rules = ('-attendances.user', '-posts.user' )
 

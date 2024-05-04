@@ -3,6 +3,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 
 from config import db
+from models.attendance import Attendance
 
 class Trip(db.Model, SerializerMixin):
     __tablename__ = 'trips'
@@ -15,10 +16,10 @@ class Trip(db.Model, SerializerMixin):
 
     attendances = db.relationship('Attendance', back_populates='trip', cascade='all, delete-orphan')
     posts = db.relationship('Post', back_populates='trip', cascade='all, delete-orphan')
-    users = association_proxy('attendances', 'user')
+    users = association_proxy('attendances', 'user', creator=lambda user_obj: Attendance(user=user_obj))
 
-    serialize_rules=('-attendances.trip', '-attendances.user.posts', '-posts.user.attendances', '-posts.trip')
-    #'-attendances.user.posts',  '-posts.user.attendances'
+    serialize_rules=('-attendances.trip', '-attendances.user.posts.trip', '-posts.user.attendances.trip', '-posts.trip')
+
     def __repr__(self):
         return f'<Trip {self.id} {self.country}>'
     

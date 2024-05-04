@@ -4,11 +4,13 @@ import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
 import UploadWidget from './UploadWidget';
 import PostCard from './PostCard';
+import PostAddForm from './PostAddForm';
 
 const TripPage = () => {
   const params = useParams()
   const [trip, setTrip] = useState({})
   const [isLoading, setIsLoading] = useState(true)
+  const [showAddPost, setShowAddPost] = useState(false)
 
   const cld = new Cloudinary({
     cloud: {
@@ -40,8 +42,29 @@ const TripPage = () => {
 
   const sortByDate = () => {
     let posts = trip.posts
-    posts.sort((a, b) => a.post_date - b.post_date)
-    console.log(posts)
+    posts.sort((a, b) => new Date(b.post_date) - new Date(a.post_date))
+    return posts
+  }
+
+  const addPost = (newPost) => {
+    const updatedPosts = [...trip.posts, newPost]
+    setTrip({...trip, posts: updatedPosts})
+  }
+
+  const deletePost = (deletePostId) => {
+    const updatedPosts = trip.posts.filter((post) => post.id !== deletePostId)
+    setTrip({...trip, posts: updatedPosts})
+  }
+
+  const editPost = (editPost) => {
+    const updatedPosts = trip.posts.map((post)=> {
+      if (post.id === editPost.id) {
+        return editPost
+      } else {
+        return post
+      }
+    })
+    setTrip({...trip, posts: updatedPosts})
   }
   
   return (
@@ -56,13 +79,18 @@ const TripPage = () => {
           <ul>{trip.vacation_type}</ul>
           <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
 
-          <UploadWidget uploadPreset={'trip_cover'} updateBackEnd={updateTripBack}/>
+          {/* <UploadWidget uploadPreset={'trip_cover'} onUpload={updateTripBack}/> */}
         </div>
 
         <div>
-          <h3>All Posts</h3>
-          {sortByDate()}
-          {trip.posts.map((post) => <PostCard key={post.id} post={post}/>)}
+          <h3>All Posts for this Trip</h3>
+          <button onClick={()=>setShowAddPost(!showAddPost)}>
+            {showAddPost ? "Close Form" : "Create a new post"}
+          </button>
+          <div>
+            {showAddPost ? <PostAddForm trip={trip} onAddPost={addPost}/> : null}
+          </div>
+          {sortByDate().map((post) => <PostCard key={post.id} post={post} onDelete={deletePost} onEditPost={editPost}/>)}
         </div>
       </>
     }

@@ -33,7 +33,8 @@ const UserProvider = ({children}) => {
         }
       })
     }
-    
+
+
     return (
         <UserContext.Provider 
           value={{currentUser, login, logout, updatedUser}}>
