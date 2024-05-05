@@ -10,11 +10,15 @@ const UploadWidget = ({onUpload, uploadPreset}) => {
       cloudName: 'wanderlog',
       uploadPreset: uploadPreset,
       sources: ['local', 'url', 'camera', 'google_drive']
-    }, (error, result) => onUpload(result.info.public_id))
+    }, (error, result) => {
+      onUpload(result.info.public_id)})
   }, [])
 
   return (
-    <button onClick={()=> widgetRef.current.open()}>
+    <button onClick={(e)=> {
+      e.preventDefault()
+      widgetRef.current.open()
+      }}>
       Upload Picture
     </button>
   )

@@ -2,10 +2,20 @@ import React, {useContext, useState} from 'react'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
 import { UserContext } from '../context/UserContext'
+import UploadWidget from './UploadWidget'
+import {Cloudinary} from "@cloudinary/url-gen";
+import {AdvancedImage} from '@cloudinary/react';
 
 const PostAddForm = ({trip, onAddPost}) => {
   const {currentUser} = useContext(UserContext)
   const [error, setError] = useState(null)
+  const [uploadPic, setUploadPic] = useState("")
+
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'wanderlog'
+    }
+  });
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Title is required"),
@@ -29,6 +39,8 @@ const PostAddForm = ({trip, onAddPost}) => {
 
 
   function submitform(values) {
+    values = {...values, photo: uploadPic}
+
     fetch("/api/posts", {
       method: "POST",
       headers: {
@@ -41,6 +53,7 @@ const PostAddForm = ({trip, onAddPost}) => {
         if (resp.ok) {
           resp.json().then(data => {
             onAddPost(data)
+            setUploadPic("")
             formik.resetForm()
 
           })
@@ -52,6 +65,13 @@ const PostAddForm = ({trip, onAddPost}) => {
   
   const displayErrors =(error) => {
     return error ? <p style={{color: "red"}}>{error}</p> : null
+  }
+
+  const createPreview = (public_id) => {
+    if (public_id) {
+      console.log("Public id", public_id)
+      setUploadPic(public_id)
+    }
   }
 
   return (
@@ -72,10 +92,13 @@ const PostAddForm = ({trip, onAddPost}) => {
           <input type="number" id="feeling_score" value={formik.values.feeling_score} onChange={formik.handleChange} />
           {displayErrors(formik.errors.feeling_score)}
 
-          {/* <UploadWidget uploadPreset={'add_post'} onUpload={(publicId)=> formik.values.photo = publicId}/> */}
-          <label htmlFor="photo"><strong>Post photo: </strong></label>
+          <UploadWidget uploadPreset={'add_post'} onUpload={createPreview}/>
+
+          {uploadPic ? <AdvancedImage cldImg={cld.image(uploadPic) }/> : null}
+          {/* <label htmlFor="photo"><strong>Post photo: </strong></label>
           <input type="text" id="photo" value={formik.values.photo} onChange={formik.handleChange} />
-          {displayErrors(formik.errors.photo)}
+          {displayErrors(formik.errors.photo)} */}
+          <br />
 
           <button type="submit">Add post </button>
           {displayErrors(error)}

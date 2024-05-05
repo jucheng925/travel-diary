@@ -79,7 +79,7 @@ const TripPage = () => {
           <ul>{trip.vacation_type}</ul>
           <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
 
-          {/* <UploadWidget uploadPreset={'trip_cover'} onUpload={updateTripBack}/> */}
+          <UploadWidget uploadPreset={'trip_cover'} onUpload={updateTripBack}/>
         </div>
 
         <div>
