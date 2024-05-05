@@ -80,26 +80,24 @@ const PostAddForm = ({trip, onAddPost}) => {
         <h1>Create a New Post</h1>
         <div className='formcontainer'>
         <hr />
-          <label htmlFor="title"><strong>Post title: </strong></label>
-          <input type="text" id="title" value={formik.values.title} onChange={formik.handleChange} />
-          {displayErrors(formik.errors.title)}
+          <div>
+            <label htmlFor="title"><strong>Post title: </strong></label>
+            <input type="text" id="title" value={formik.values.title} onChange={formik.handleChange} />
+            {displayErrors(formik.errors.title)}
 
-          <label htmlFor="body"><strong>Body: </strong></label>
-          <input type="textarea" id="body" value={formik.values.body} onChange={formik.handleChange} />
-          {displayErrors(formik.errors.body)}
-          
-          <label htmlFor="feeling_score"><strong>Post feeling_score: </strong></label>
-          <input type="number" id="feeling_score" value={formik.values.feeling_score} onChange={formik.handleChange} />
-          {displayErrors(formik.errors.feeling_score)}
+            <label htmlFor="body"><strong>Body: </strong></label>
+            <input type="textarea" id="body" value={formik.values.body} onChange={formik.handleChange} />
+            {displayErrors(formik.errors.body)}
+            
+            <label htmlFor="feeling_score"><strong>Post feeling_score: </strong></label>
+            <input type="number" id="feeling_score" value={formik.values.feeling_score} onChange={formik.handleChange} />
+            {displayErrors(formik.errors.feeling_score)}
 
-          <UploadWidget uploadPreset={'add_post'} onUpload={createPreview}/>
+            <UploadWidget uploadPreset={'add_post'} onUpload={createPreview}/>
 
-          {uploadPic ? <AdvancedImage cldImg={cld.image(uploadPic) }/> : null}
-          {/* <label htmlFor="photo"><strong>Post photo: </strong></label>
-          <input type="text" id="photo" value={formik.values.photo} onChange={formik.handleChange} />
-          {displayErrors(formik.errors.photo)} */}
-          <br />
+            {uploadPic ? <AdvancedImage cldImg={cld.image(uploadPic) }/> : null}
 
+            </div>
           <button type="submit">Add post </button>
           {displayErrors(error)}
 
