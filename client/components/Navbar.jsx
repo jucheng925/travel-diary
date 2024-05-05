@@ -13,8 +13,11 @@ const Navbar = () => {
       </NavLink>
       {currentUser ? 
         <>
-          <NavLink to= "/profile/edit">
-            Edit Profile
+          <NavLink className="nav-link"to= "/profile/edit"> 
+              Edit Profile
+          </NavLink>
+          <NavLink className="nav-link"to="/trips/add"> 
+              Add a trip
           </NavLink>
           <NavLink to= "/logout" className="nav-link" onClick={logout}>
               Logout

@@ -8,6 +8,7 @@ import CheckSession from "../components/CheckSession"
 import Profile from "../components/Profile"
 import TripPage from "../components/TripPage"
 import AllPosts from "../components/AllPosts"
+import TripAddForm from "../components/TripAddForm"
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/profile/edit" element={<Profile/>}/>
           <Route path ="/trips/:id" element ={<TripPage/>} />
-          {/* <Route path = "/trips/add" element={<TripAddForm/>} /> */}
+          <Route path = "/trips/add" element={<TripAddForm/>} />
           <Route path ="/all" element={<AllPosts/>} />
           <Route path="/logout" element = {<Logout />} />
           <Route path="/" element={<Home />} />
