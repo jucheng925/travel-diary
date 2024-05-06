@@ -82,7 +82,7 @@ const PostEditForm = ({post, setOpenEditForm, openEditForm, onEditPost}) => {
             {displayErrors(formik.errors.title)}
 
             <label htmlFor="body"><strong>Body: </strong></label>
-            <input type="textarea" id="body" value={formik.values.body} onChange={formik.handleChange} />
+            <textarea id="body" cols="55" rows="5" value={formik.values.body} onChange={formik.handleChange} />
             {displayErrors(formik.errors.body)}
             
             <label htmlFor="feeling_score"><strong>Post feeling_score: </strong></label>
