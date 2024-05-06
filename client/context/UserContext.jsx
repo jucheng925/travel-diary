@@ -34,10 +34,15 @@ const UserProvider = ({children}) => {
       })
     }
 
+    const userAddedTrip = (newAttendanceObj) => {
+      const newAttendancesList = [...currentUser.attendances, newAttendanceObj]
+      setCurrentUser({...currentUser, attendances: newAttendancesList})
+    }
+
 
     return (
         <UserContext.Provider 
-          value={{currentUser, login, logout, updatedUser}}>
+          value={{currentUser, login, logout, updatedUser, userAddedTrip}}>
             { children }
         </UserContext.Provider>
       )

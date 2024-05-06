@@ -1,11 +1,13 @@
 import React, {useContext, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
 import { UserContext } from '../context/UserContext'
 
 const TripAddForm = () => {
-  const {currentUser} = useContext(UserContext)
+  const {userAddedTrip} = useContext(UserContext)
   const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   const formSchema = yup.object().shape({
     country: yup.string().required("Country is required"),
@@ -33,6 +35,24 @@ const TripAddForm = () => {
 
   function submitform(values) {
     console.log(values)
+    fetch("/api/trips", {
+      method: "POST",
+      headers: {
+         "Content-Type" : "application/json",
+          "Accept" : "application/json"
+      },
+      body: JSON.stringify(values),
+      })
+      .then(resp => {
+        if (resp.ok) {
+          resp.json().then(data => {
+            userAddedTrip(data)
+            navigate('/')
+          })
+        } else {
+          resp.json().then((err)=> setError(err.error))
+        }
+      })
   }
 
   const displayErrors =(error) => {
@@ -66,34 +86,8 @@ const TripAddForm = () => {
               <option value="Family"> Family </option>
               <option value="Friends"> Friends </option>
             </select>
+            {displayErrors(formik.errors.vacation_type)}
             
-            {/* <div>
-              <p>Select the vacation Category</p>
-              <input type="radio" className='radio name' name="vacation_type" id="Sightseeing" value="Sightseeing" checked={formik.values.vacation_type == 'Sightseeing'} onChange={formik.handleChange} />
-              <label htmlFor="Sightseeing" className='radio'>Sightseeing</label>
-
-              <input type="radio" className='radio name' name="vacation_type" id="Cruises" value="Cruises" checked={formik.values.vacation_type == 'Cruises'} onChange={formik.handleChange} />
-              <label htmlFor="Cruises" className='radio'>Cruises</label>
-
-              <input type="radio" className='radio name' name="vacation_type" id="Adventure" value="Adventure" checked={formik.values.vacation_type == 'Adventure'} onChange={formik.handleChange} />
-              <label htmlFor="Adventure" className='radio'>Adventure</label>
-
-              <input type="radio" className='radio name' name="vacation_type" id="Culinary" value="Culinary" checked={formik.values.vacation_type == 'Culinary'} onChange={formik.handleChange} />
-              <label htmlFor="Culinary" className='radio'>Culinary</label>
-
-              <input type="radio" className='radio name' name="vacation_type" id="Nature" value="Nature" checked={formik.values.vacation_type == 'Nature'} onChange={formik.handleChange} />
-              <label htmlFor="Nature" className='radio'>Nature</label>
-
-              <input type="radio" className='radio name' name="vacation_type" id="RoadTrip" value="RoadTrip" checked={formik.values.vacation_type == 'RoadTrip'} onChange={formik.handleChange} />
-              <label htmlFor="RoadTrip" className='radio'>RoadTrip</label>
-
-              <input type="radio" className='radio name' name="vacation_type" id="Family" value="Family" checked={formik.values.vacation_type == 'Family'} onChange={formik.handleChange} />
-              <label htmlFor="Family" className='radio'>Family</label>
-
-              <input type="radio" className='radio name' name="vacation_type" id="Friends" value="Friends" checked={formik.values.vacation_type == 'Friends'} onChange={formik.handleChange} />
-              <label htmlFor="Friends" className='radio'>Friends</label>
-              {displayErrors(formik.errors.vacation_type)}
-            </div> */}
 
             {/* <UploadWidget uploadPreset={'add_post'} onUpload={createPreview}/>
 
