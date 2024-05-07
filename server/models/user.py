@@ -14,11 +14,9 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String, nullable=False)
     profile_pic = db.Column(db.String)
 
-    # if have time, include a children theme
-    # age = db.Column(db.Integer)
-
     attendances = db.relationship('Attendance', back_populates='user', cascade='all, delete-orphan')
     posts = db.relationship('Post', back_populates='user', cascade='all, delete-orphan')
+    offers = db.relationship('Offer', back_populates='user', cascade='all, delete-orphan')
     trips = association_proxy('attendances', 'trip', creator=lambda trip_obj: Attendance(trip=trip_obj))
     
     serialize_rules = ('-attendances.user', '-posts.user' )
