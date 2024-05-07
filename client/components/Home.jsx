@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Login from './Login'
 import { UserContext } from '../context/UserContext'
 import TripCard from './TripCard'
+import OfferStatus from './OfferStatus'
 
 const Home = () => {
   const { currentUser } = useContext(UserContext)
@@ -14,6 +15,7 @@ const Home = () => {
       {currentUser ? 
         <>
         <p><strong>Welcome, {currentUser.username}!</strong></p>
+        <OfferStatus/>
         <div>
           <h3>All Trips</h3>
           {currentUser.attendances.map((attendance)=> (

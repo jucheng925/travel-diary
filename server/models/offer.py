@@ -15,7 +15,7 @@ class Offer(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates='offers')
     trip = db.relationship('Trip', back_populates='offers')
 
-    serialize_rules=('-user.offers', '-trip.offers')
+    serialize_rules=('-user.offers', '-user.posts','-trip.offers', '-trip.posts')
 
     def __repr__(self):
         return f'<Offer {self.id} {self.recipient_email}>'

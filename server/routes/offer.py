@@ -15,6 +15,9 @@ class Offers(Resource):
                 trip_id = data.get("trip_id")
                 user_id = user.id
 
+                if recipient_email == user.email:
+                    return {"error": "Unable to use your own email"}, 422
+
                 new_offer = Offer(recipient_email=recipient_email, status=status, trip_id=trip_id, user_id=user_id)
 
                 db.session.add(new_offer)
@@ -25,4 +28,17 @@ class Offers(Resource):
                 return {"error" : str(err)}, 422
             
 api.add_resource(Offers, '/api/offers')
+
+class CheckMyOffers(Resource):
+    def get(self):
+        user = User.query.filter(User.id == session.get('user_id')).first()
+        if user:
+            offers = Offer.query.filter(Offer.recipient_email == user.email).all()
+            offers_dict = [offer.to_dict() for offer in offers]
+            return offers_dict, 200
+        else:
+            return {"error": "Not Authorized"}, 401
+        
+api.add_resource(CheckMyOffers, '/api/checkMyOffers')
+
 
