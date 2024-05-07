@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
 import UploadWidget from './UploadWidget';
@@ -77,10 +77,17 @@ const TripPage = () => {
           <ul>{trip.country}</ul>
           <ul>{trip.city_state}</ul>
           <ul>{trip.vacation_type}</ul>
-          <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
+          {/* <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
 
-          <UploadWidget uploadPreset={'trip_cover'} onUpload={updateTripBack}/>
+          <UploadWidget uploadPreset={'trip_cover'} onUpload={updateTripBack}/> */}
         </div>
+
+        {trip.public ? 
+          <div>
+            <h2>Collaboration</h2>
+            <Link to={"/trips/request"} state={{trip}}>Add another user</Link>
+          </div> :
+          null}
 
         <div>
           <h3>All Posts for this Trip</h3>

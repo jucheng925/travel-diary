@@ -19,7 +19,7 @@ class User(db.Model, SerializerMixin):
     offers = db.relationship('Offer', back_populates='user', cascade='all, delete-orphan')
     trips = association_proxy('attendances', 'trip', creator=lambda trip_obj: Attendance(trip=trip_obj))
     
-    serialize_rules = ('-attendances.user', '-posts.user' )
+    serialize_rules = ('-attendances.user', '-posts.user', '-offers.user' )
 
     @hybrid_property
     def password_hash(self):

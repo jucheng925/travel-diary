@@ -9,6 +9,7 @@ import Profile from "../components/Profile"
 import TripPage from "../components/TripPage"
 import AllPosts from "../components/AllPosts"
 import TripAddForm from "../components/TripAddForm"
+import OfferForm from "../components/OfferForm"
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile/edit" element={<Profile/>}/>
           <Route path ="/trips/:id" element ={<TripPage/>} />
           <Route path = "/trips/add" element={<TripAddForm/>} />
+          <Route path ="/trips/request" element={<OfferForm/>}/>
           <Route path ="/all" element={<AllPosts/>} />
           <Route path="/logout" element = {<Logout />} />
           <Route path="/" element={<Home />} />
