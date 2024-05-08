@@ -30,5 +30,11 @@ class Offer(db.Model, SerializerMixin):
     def check_status(self, key, status):
         status_list = ["pending", "accepted", "declined"]
         if status not in status_list:
-            raise ValueError("Status must be pending, accepted or declined")
+            raise ValueError("Status must be pending or accepted or declined")
         return status
+    
+    @validates("trip")
+    def check_trip(self, key, trip):
+        if trip.public == False:
+            raise ValueError ("Trip must be public")
+        return trip

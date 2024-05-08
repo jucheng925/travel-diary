@@ -39,7 +39,6 @@ const UserProvider = ({children}) => {
       setCurrentUser({...currentUser, attendances: newAttendancesList})
     }
 
-
     return (
         <UserContext.Provider 
           value={{currentUser, login, logout, updatedUser, userAddedTrip}}>

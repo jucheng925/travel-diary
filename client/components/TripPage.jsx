@@ -75,7 +75,7 @@ const TripPage = () => {
   const OfferStatus = ({offer}) => {
     return (
       <div>
-        <p>Collabaration Invite sent to {offer.recipient_email} is {offer.status}</p>
+        <p>Collabaration Invite sent to {offer.recipient_email} {offer.status == "pending" ? "is" : "was"} {offer.status}</p>
       </div>
     )
   }
@@ -90,9 +90,9 @@ const TripPage = () => {
           <ul>{trip.country}</ul>
           <ul>{trip.city_state}</ul>
           <ul>{trip.vacation_type}</ul>
-          {/* <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
+          <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
 
-          <UploadWidget uploadPreset={'trip_cover'} onUpload={updateTripBack}/> */}
+          <UploadWidget uploadPreset={'trip_cover'} onUpload={updateTripBack}/>
         </div>
 
         {trip.public ? 

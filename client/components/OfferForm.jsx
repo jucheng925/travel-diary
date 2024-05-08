@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
@@ -7,6 +7,7 @@ import {useFormik} from 'formik'
 const OfferForm = () => {
   const location = useLocation()
   const {trip} = location.state
+  const navigate = useNavigate()
   const {currentUser} = useContext(UserContext)
   const [error, setError] = useState(null)
 
@@ -38,7 +39,8 @@ const OfferForm = () => {
      .then(resp => {
        if (resp.ok) {
          resp.json().then(data => {
-          console.log(data)
+          setError(null)
+          navigate(`/trips/${trip.id}`)
          })
        } else {
         resp.json().then((err)=> setError(err.error))

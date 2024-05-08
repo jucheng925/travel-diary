@@ -7,6 +7,7 @@ if __name__ == "__main__":
   with app.app_context():
     
     print("Deleting all records ...")
+    Offer.query.delete()
     Post.query.delete()
     Attendance.query.delete()
     Trip.query.delete()
@@ -73,6 +74,15 @@ if __name__ == "__main__":
     db.session.add_all([post1, post2, post3, post4, post5])
 
     db.session.commit()
+
+    print("Creating offers ...")
+
+    offer1 = Offer(user=bob, trip=trip1, recipient_email="kim234@gmail.com", status="pending")
+
+    db.session.add(offer1)
+    db.session.commit()
+
+
 
 
 

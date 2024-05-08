@@ -34,7 +34,6 @@ const TripAddForm = () => {
   });
 
   function submitform(values) {
-    console.log(values)
     fetch("/api/trips", {
       method: "POST",
       headers: {

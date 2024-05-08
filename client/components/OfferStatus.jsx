@@ -14,14 +14,22 @@ const OfferStatus = () => {
       }
     })
   }, [])
+
+  
+  const updatedOffer = (offerObj) => {
+    const newOffersList = myOffers.filter((offer) => offer.id !== offerObj.id)
+    setMyOffers(newOffersList)
+  }
+
+
   return (
     <div>
       <p>You have {myOffers.length} pending invitation. </p>
-      <button onClick={()=>setShowOffers(!showOffers)}>View More Info</button>
+      {myOffers.length !== 0 ? <button onClick={()=>setShowOffers(!showOffers)}>View More Info</button> : null}
       <div>
         {showOffers ? 
           <>
-            {myOffers.map((offer)=> <OfferCard id={offer.id} offer={offer}/>)}
+            {myOffers.map((offer)=> <OfferCard key={offer.id} offer={offer} onUpdate={updatedOffer}/>)}
           </>
           : null}
       </div>
