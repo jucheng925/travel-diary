@@ -17,6 +17,8 @@ class Offers(Resource):
 
                 if recipient_email == user.email:
                     return {"error": "Unable to use your own email"}, 422
+                elif not User.query.filter(User.email == recipient_email).first():
+                    return {"error": "The user with the requested email does not have an account. Please first ask the user to create an account."}, 422
 
                 new_offer = Offer(recipient_email=recipient_email, status=status, trip_id=trip_id, user_id=user_id)
 
@@ -33,12 +35,23 @@ class CheckMyOffers(Resource):
     def get(self):
         user = User.query.filter(User.id == session.get('user_id')).first()
         if user:
-            offers = Offer.query.filter(Offer.recipient_email == user.email).all()
+            offers = Offer.query.filter(Offer.recipient_email == user.email, Offer.status =="pending").all()
             offers_dict = [offer.to_dict() for offer in offers]
             return offers_dict, 200
         else:
             return {"error": "Not Authorized"}, 401
         
 api.add_resource(CheckMyOffers, '/api/checkMyOffers')
+
+class OfferById(Resource):
+    def patch(self, id):
+        offer = Offer.query.filter_by(id=id).first()
+        setattr(offer, 'status', 'declined')
+        db.session.add()
+        db.session.commit()
+        return offer.to_dict(), 200
+
+
+api.add_resource(OfferById, '/api/offers/<int:id>')
 
 

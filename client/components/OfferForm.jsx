@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import * as yup from 'yup'
@@ -8,6 +8,8 @@ const OfferForm = () => {
   const location = useLocation()
   const {trip} = location.state
   const {currentUser} = useContext(UserContext)
+  const [error, setError] = useState(null)
+
 
   const formSchema = yup.object().shape({
     recipient_email: yup.string().email('Please enter a valid email').required("Email is required")
@@ -38,6 +40,8 @@ const OfferForm = () => {
          resp.json().then(data => {
           console.log(data)
          })
+       } else {
+        resp.json().then((err)=> setError(err.error))
        }
     })
   }
@@ -59,6 +63,7 @@ const OfferForm = () => {
             {displayErrors(formik.errors.recipient_email)}
           </div>
           <button type="submit">Send a request</button>
+          {displayErrors(error)}
         </div>
       </form>
       <Link to={`/trips/${trip.id}`}>Return to Previous Page</Link>

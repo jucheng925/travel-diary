@@ -1,5 +1,6 @@
-import React, {useEffect, useState } from 'react'
+import React, {useEffect, useState, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { UserContext } from '../context/UserContext'
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
 import UploadWidget from './UploadWidget';
@@ -8,6 +9,7 @@ import PostAddForm from './PostAddForm';
 
 const TripPage = () => {
   const params = useParams()
+  const {currentUser} = useContext(UserContext)
   const [trip, setTrip] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [showAddPost, setShowAddPost] = useState(false)
@@ -46,6 +48,9 @@ const TripPage = () => {
     return posts
   }
 
+  const filterMyOffer = trip.offers ? trip.offers.filter((offer)=> offer.user_id == currentUser.id) : []
+
+
   const addPost = (newPost) => {
     const updatedPosts = [...trip.posts, newPost]
     setTrip({...trip, posts: updatedPosts})
@@ -65,6 +70,14 @@ const TripPage = () => {
       }
     })
     setTrip({...trip, posts: updatedPosts})
+  }
+
+  const OfferStatus = ({offer}) => {
+    return (
+      <div>
+        <p>Collabaration Invite sent to {offer.recipient_email} is {offer.status}</p>
+      </div>
+    )
   }
   
   return (
@@ -86,6 +99,9 @@ const TripPage = () => {
           <div>
             <h2>Collaboration</h2>
             <Link to={"/trips/request"} state={{trip}}>Add another user</Link>
+            <div>
+              {filterMyOffer.map((offer) => <OfferStatus key ={offer.id} offer={offer}/>)}
+            </div>
           </div> :
           null}
 
