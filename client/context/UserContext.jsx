@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import TripPage from "../components/TripPage";
 
 const UserContext = createContext({});
 
@@ -38,6 +39,12 @@ const UserProvider = ({children}) => {
       const newAttendancesList = [...currentUser.attendances, newAttendanceObj]
       setCurrentUser({...currentUser, attendances: newAttendancesList})
     }
+
+    // const addEditPost = (newTrip) => {
+    //   const updatedTrips = currentUser.attendances.filter((attendance) => attendance.trip.id == newTrip.id)
+    //   console.log(newTrip)
+    //   console.log(updatedTrips)
+    // }
 
     return (
         <UserContext.Provider 

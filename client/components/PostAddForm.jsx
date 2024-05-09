@@ -69,7 +69,6 @@ const PostAddForm = ({trip, onAddPost}) => {
 
   const createPreview = (public_id) => {
     if (public_id) {
-      console.log("Public id", public_id)
       setUploadPic(public_id)
     }
   }

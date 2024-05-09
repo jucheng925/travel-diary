@@ -65,7 +65,6 @@ const PostEditForm = ({post, setOpenEditForm, openEditForm, onEditPost}) => {
 
   const createPreview = (public_id) => {
     if (public_id) {
-      console.log("Public id", public_id)
       setUploadPic(public_id)
     }
   }
@@ -91,7 +90,7 @@ const PostEditForm = ({post, setOpenEditForm, openEditForm, onEditPost}) => {
 
             <UploadWidget uploadPreset={'add_post'} onUpload={createPreview}/>
 
-            {uploadPic ? <AdvancedImage cldImg={cld.image(uploadPic) }/> : null}
+            {uploadPic ? <AdvancedImage cldImg={cld.image(uploadPic) }/> : <AdvancedImage cldImg={cld.image(post.photo)}/>}
 
           </div>
           <button type="submit">Edit post </button>

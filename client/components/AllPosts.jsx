@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { UserContext } from '../context/UserContext'
-import { halftone16x16Orthogonal } from '@cloudinary/url-gen/qualifiers/dither'
+
 
 const AllPosts = () => {
   const { currentUser } = useContext(UserContext)
