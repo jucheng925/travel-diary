@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext'
 const AllPosts = () => {
   const { currentUser } = useContext(UserContext)
   const myPosts = currentUser.posts
-  console.log(myPosts)
+  console.log(currentUser)
 
   if (currentUser) {
     return (

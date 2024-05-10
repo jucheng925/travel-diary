@@ -9,7 +9,7 @@ import PostAddForm from './PostAddForm';
 
 const TripPage = () => {
   const params = useParams()
-  const {currentUser} = useContext(UserContext)
+  const {currentUser, contextAddPost, contextDeletePost, contextEditPost} = useContext(UserContext)
   const [trip, setTrip] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [showAddPost, setShowAddPost] = useState(false)
@@ -52,16 +52,20 @@ const TripPage = () => {
 
 
   const addPost = (newPost) => {
+    contextAddPost(newPost)
     const updatedPosts = [...trip.posts, newPost]
     setTrip({...trip, posts: updatedPosts})
+
   }
 
   const deletePost = (deletePostId) => {
+    contextDeletePost(deletePostId)
     const updatedPosts = trip.posts.filter((post) => post.id !== deletePostId)
     setTrip({...trip, posts: updatedPosts})
   }
 
   const editPost = (editPost) => {
+    contextEditPost(editPost)
     const updatedPosts = trip.posts.map((post)=> {
       if (post.id === editPost.id) {
         return editPost

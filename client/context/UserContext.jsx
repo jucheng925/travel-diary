@@ -40,15 +40,30 @@ const UserProvider = ({children}) => {
       setCurrentUser({...currentUser, attendances: newAttendancesList})
     }
 
-    // const addEditPost = (newTrip) => {
-    //   const updatedTrips = currentUser.attendances.filter((attendance) => attendance.trip.id == newTrip.id)
-    //   console.log(newTrip)
-    //   console.log(updatedTrips)
-    // }
+    const contextAddPost = (newPost) => {
+      const newPostList = [...currentUser.posts, newPost]
+      setCurrentUser({...currentUser, posts: newPostList})
+    }
+
+    const contextDeletePost = (deletePostId) => {
+      const updatedPosts = currentUser.posts.filter((post) => post.id !== deletePostId)
+      setCurrentUser({...currentUser, posts: updatedPosts})
+    }
+
+    const contextEditPost = (editPost) => {
+      const updatedPosts = currentUser.posts.map((post)=> {
+        if (post.id === editPost.id) {
+          return editPost 
+        } else {
+          return post
+        }
+      })
+      setCurrentUser({...currentUser, posts: updatedPosts})
+    }
 
     return (
         <UserContext.Provider 
-          value={{currentUser, login, logout, updatedUser, userAddedTrip}}>
+          value={{currentUser, login, logout, updatedUser, userAddedTrip, contextAddPost, contextEditPost, contextDeletePost}}>
             { children }
         </UserContext.Provider>
       )
