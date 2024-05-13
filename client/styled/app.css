@@ -1,4 +1,10 @@
 .nav-link {
     text-decoration: none;
-    font-size: larger;
+    font-size: x-large;
+    color: #d8aa91;
+}
+
+.nav-link-small {
+    text-decoration: none;
+    font-size: medium;
 }
