@@ -18,7 +18,7 @@ if __name__ == "__main__":
     bob = User(username='bob', email="bob123@gmail.com", profile_pic="profile/cool-profile-pic_kqpbat")
     bob.password_hash = "test"
 
-    susan = User(username='susan', email="susan123@gmail.com", profile_pic="profile/aiony-haust-3TLl_97HNJo-unsplash_tabhts")
+    susan = User(username='susan', email="susan123@gmail.com", profile_pic="profile/aiony-haust-3TLl_97HNJo-unsplash_pbm2cs")
     susan.password_hash = "test"
 
     kim = User(username='kim', email="kim234@gmail.com", profile_pic="profile/tyler_c8mxac") 

@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import TripPage from "../components/TripPage";
 
 const UserContext = createContext({});
 

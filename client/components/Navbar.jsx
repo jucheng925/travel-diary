@@ -6,9 +6,9 @@ import "../styled/app.css"
 import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedImage } from '@cloudinary/react';
 import { thumbnail } from '@cloudinary/url-gen/actions/resize';
-import {byRadius} from "@cloudinary/url-gen/actions/roundCorners";
 import {focusOn} from "@cloudinary/url-gen/qualifiers/gravity";
 import {FocusOn} from "@cloudinary/url-gen/qualifiers/focusOn";
+
 
 const Navbar = () => {
   const {currentUser, logout} = useContext(UserContext)
@@ -19,8 +19,8 @@ const Navbar = () => {
     }
   });
 
-  const AvatarPic = currentUser ? cld.image(currentUser.profile_pic).resize(thumbnail().width(150).height(150).gravity(focusOn(FocusOn.face()))).roundCorners(byRadius(20)) : null
-
+  const AvatarPic = currentUser ? cld.image(currentUser.profile_pic).resize(thumbnail().width(50).height(50).zoom(0.85).gravity(focusOn(FocusOn.face()))) : null
+  AvatarPic ? console.log(AvatarPic.toURL()): null
   const StyledToolbar = styled(Toolbar) ({
     display: "flex",
     justifyContent: "space-between"
@@ -64,9 +64,11 @@ const Navbar = () => {
           {currentUser ? 
             <>
               <Avatar 
-                alt={currentUser.username}>
-                <AdvancedImage cldImg={cld.image(currentUser.profile_pic)} /> 
-              </Avatar>
+                alt={currentUser.username}
+                src={AvatarPic.toURL()} />
+                  
+                {/* <AdvancedImage cldImg={AvatarPic} /> 
+              </Avatar> */}
               <NavLink className="nav-link"to= "/profile/edit" style = {activeState}> 
                   Edit Profile
               </NavLink>
