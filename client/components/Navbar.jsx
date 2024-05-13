@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import { Toolbar, AppBar, styled, Typography, Box, Avatar, Menu, MenuItem } from '@mui/material';
 import AddLocationIcon from '@mui/icons-material/AddLocation';
-import "../styled/app.css"
 import { Cloudinary } from '@cloudinary/url-gen';
 import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import {focusOn} from "@cloudinary/url-gen/qualifiers/gravity";
@@ -55,9 +54,9 @@ const Navbar = () => {
 
   
   return (
-    <AppBar position='sticky'>
+    <AppBar position='sticky' color='primary'>
       <StyledToolbar>
-      <Typography variant="h5" sx={{ fontSize: { xs: "small", sm: "large" } }}>
+      <Typography variant="h6">
         <NavLink to= "/" style = {activeState} className="nav-link">
           WanderLog
         </NavLink>

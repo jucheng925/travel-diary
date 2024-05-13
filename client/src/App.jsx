@@ -11,7 +11,9 @@ import AllPosts from "../components/AllPosts"
 import TripAddForm from "../components/TripAddForm"
 import OfferForm from "../components/OfferForm"
 import { ThemeProvider } from "@mui/material"
-import { theme } from "../styled/theme"
+import { myTheme } from "../styled/theme"
+import "../styled/app.css"
+
 
 
 function App() {
@@ -19,7 +21,7 @@ function App() {
   return (
     <Router>
       <UserProvider>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={myTheme}>
           <CheckSession/>
           <Navbar />
           <Routes>
