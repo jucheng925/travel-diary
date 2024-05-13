@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import { UserContext } from '../context/UserContext'
 import {Cloudinary} from "@cloudinary/url-gen";
-import {AdvancedImage} from '@cloudinary/react';
+import {AdvancedImage, lazyload, placeholder} from '@cloudinary/react';
 import PostEditForm from './PostEditForm';
 
 const PostCard = ({post, onDelete, onEditPost}) => {
@@ -34,7 +34,7 @@ const PostCard = ({post, onDelete, onEditPost}) => {
       }
       <h3>{post.user.username}</h3>
       <p>{post.body}</p>
-      <AdvancedImage cldImg={cld.image(post.photo)}/>
+      <AdvancedImage cldImg={cld.image(post.photo)} plugins={[lazyload(), placeholder({mode: 'blur'})]}/>
       {currentUser.id === post.user.id ?
         <>
           <button onClick={handleDelete}>Delete</button>
