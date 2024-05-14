@@ -1,9 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const UserContext = createContext({});
 
+const getInitialState = () => {
+  const currentUser = sessionStorage.getItem("currentUser");
+  return currentUser ? JSON.parse(currentUser) : null
+
+}
+
 const UserProvider = ({children}) => {
-    const [currentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState(getInitialState);
+
+    useEffect(() => {
+      sessionStorage.setItem("currentUser", JSON.stringify(currentUser))
+    }, [currentUser])
   
     const login = (user) => {
       setCurrentUser(user)
