@@ -4,7 +4,7 @@ import Login from './Login'
 import { UserContext } from '../context/UserContext'
 import TripCard from './TripCard'
 import OfferStatus from './OfferStatus'
-import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material'
+import { Box, Divider, Grid, Stack, Typography } from '@mui/material'
 import { ColorButton } from '../styled/button'
 
 
@@ -28,6 +28,7 @@ const Home = () => {
           justifyContent="flex-start"
           alignItems="stretch"
           spacing={4}
+          margin="0 30px"
           divider={<Divider flexItem sx={{borderColor: 'otherColor.main'}}/>}
           >
 
@@ -46,11 +47,11 @@ const Home = () => {
             </Grid>
           </div>
           <div>
-            <Button variant='contained' color='secondary'>
+            <ColorButton variant='contained' color='secondary'>
               <Link className="link-styles" to={'/all'} >
                   See All Posts
               </Link>
-              </Button>
+            </ColorButton>
           </div>
         </Stack>
       

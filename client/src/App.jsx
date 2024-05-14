@@ -11,8 +11,8 @@ import AllPosts from "../components/AllPosts"
 import TripAddForm from "../components/TripAddForm"
 import OfferForm from "../components/OfferForm"
 import { ThemeProvider } from "@mui/material"
-import { myTheme } from "../styled/theme"
-import "../styled/app.css"
+import { myTheme } from "./styled/theme"
+import "./styled/app.css"
 
 
 
