@@ -10,12 +10,15 @@ export const myTheme = createTheme({
         },
         otherColor:{
           main:"#3A2449"
+          //purple
         },
         error: {
           main: "#6d213c"
+          //magenta
         },
         success: {
           main: "#ffc09f"
+          //peach
         }
       }
     })

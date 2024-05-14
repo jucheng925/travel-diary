@@ -3,6 +3,9 @@ import * as yup from 'yup'
 import {useFormik} from 'formik'
 import { UserContext } from '../context/UserContext'
 import { Link } from 'react-router-dom'
+import { ColorButton } from '../styled/button'
+import { Typography } from '@mui/material'
+
 
 const Login = () => {
   const [error, setError] = useState(null)
@@ -47,11 +50,12 @@ const Login = () => {
   }
 
 return (
+
   <div className='body'>
     <form onSubmit={formik.handleSubmit}>
         <h1>Login</h1>
         <div className='formcontainer'>
-        <hr />
+        <hr className='formline'/>
         <div className='container'>
             <label htmlFor='username'><strong>Username: </strong></label>
             <input type="text" id="username" value={formik.values.username} onChange={formik.handleChange} autoComplete='on'/>
@@ -61,13 +65,16 @@ return (
             {displayErrors(formik.errors.password)}
 
         </div>
-        <button type="submit">Log In</button>
+        <ColorButton sx={{width: '100%'}} type="submit">Log In</ColorButton>
         {displayErrors(error)}
         </div>
-        <p><strong>Not a current user?</strong> <Link to="/signup">  Signup</Link></p>
+        <Typography sx={{ paddingLeft: "50px", paddingBottom: "10px", color: "secondary.main" }}>
+            Not a current user? <Link className='link-styles' to="/signup">  Signup</Link>
+        </Typography>
     </form>
+    </div>
 
-  </div>
+
 )}
 
 export default Login

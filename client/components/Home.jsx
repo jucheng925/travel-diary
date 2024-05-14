@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext'
 import TripCard from './TripCard'
 import OfferStatus from './OfferStatus'
 import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material'
+import { ColorButton } from '../styled/button'
 
 
 const Home = () => {
@@ -14,7 +15,7 @@ const Home = () => {
     <div className='home'>
       <Box
         sx={{ mx: 'auto', width: 500, my: 3,
-        textAlign: 'center', fontWeight: '500' }}>
+        textAlign: 'center', fontWeight: '500', color:'#FFF7BA' }}>
         Wanderlog: An on-the-go travel diary where you can make a post or upload a picture on the fly. When going on a vacation, there are tons of memories to make. 
         Now you do not know to worry about remembering it all. Just make a post everyday.
       </Box>
@@ -45,11 +46,11 @@ const Home = () => {
             </Grid>
           </div>
           <div>
-            <Button>
-              <Link className="link-styles" to={'/all'}>
+            <Button variant='contained' color='secondary'>
+              <Link className="link-styles" to={'/all'} >
                   See All Posts
               </Link>
-            </Button>
+              </Button>
           </div>
         </Stack>
       
