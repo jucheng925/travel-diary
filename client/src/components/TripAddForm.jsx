@@ -100,13 +100,14 @@ const TripAddForm = () => {
             <input type="date" id="end_date" value={formik.values.end_date} onChange={formik.handleChange} />
             {displayErrors(formik.errors.end_date)}
             
-            <p><strong>Public or Private?</strong></p>
-            <input type="radio" className='radio name' name="public" id="Public" value="true" checked={formik.values.public == 'true'} onChange={formik.handleChange} />
-            <label htmlFor="Public" className='radio'>Public</label>
+            <div style={{margin: "10px 0"}}>
+              <input type="radio" className='radio name' name="public" id="Public" value="true" checked={formik.values.public == 'true'} onChange={formik.handleChange} />
+              <label htmlFor="Public" className='radio'>Public   </label>
 
-            <input type="radio" className='radio name' name="public" id="Private" value="false" checked={formik.values.public == 'false'} onChange={formik.handleChange} />
-            <label htmlFor="Private" className='radio'>Private</label>
-          
+              <input type="radio" className='radio name' name="public" id="Private" value="false" checked={formik.values.public == 'false'} onChange={formik.handleChange} />
+              <label htmlFor="Private" className='radio'>Private</label>
+            </div>
+
             {displayErrors(formik.errors.public)}
 
             </div>

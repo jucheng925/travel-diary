@@ -67,7 +67,7 @@ const Signup = () => {
         <hr />
         {displayErrors(error)}
         <div className='container'>
-            <label htmlFor='username'><strong>Username: </strong></label>
+            <label htmlFor='username'><strong>Username: <span style={{fontStyle: "italic"}}>(case sensitive)</span></strong></label>
             <input type="text" id="username" value={formik.values.username} onChange={formik.handleChange} autoComplete='on'/>
             {displayErrors(formik.errors.username)}
 

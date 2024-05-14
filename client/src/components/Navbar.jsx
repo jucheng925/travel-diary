@@ -58,7 +58,7 @@ const Navbar = () => {
       <StyledToolbar>
       <Typography variant="h6">
         <NavLink to= "/" style = {activeState} className="nav-link">
-          WanderLog
+        WanderLog 
         </NavLink>
       </Typography>
         {currentUser ? 

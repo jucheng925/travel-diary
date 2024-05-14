@@ -1,5 +1,7 @@
 import { Cloudinary } from '@cloudinary/url-gen';
-import { Card, CardActionArea, CardContent, CardMedia, Stack, Typography } from '@mui/material'
+import { Card, CardActionArea, CardContent, CardMedia, Stack } from '@mui/material'
+import LockIcon from '@mui/icons-material/Lock';
+import PublicIcon from '@mui/icons-material/Public';
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { StyledFont } from '../styled/styledcomponent';
@@ -29,12 +31,12 @@ const TripCard = ({attendance}) => {
         <CardContent>
           <Stack 
             direction={{ xs: 'column', sm: 'row' }}
+            spacing={1}
             divider={<hr/>}
             >
-            <StyledFont>{trip.country}, {trip.city_state}</StyledFont>
-            <StyledFont>Start Date: {attendance.start_date}</StyledFont>
-            <StyledFont>End Date: {attendance.end_date}</StyledFont>
-            <StyledFont>{trip.public ? 'PUBLIC' : ""}</StyledFont>
+            <StyledFont><span style={{fontWeight:"bold"}}>Location:</span> <br/> {trip.country}, {trip.city_state}</StyledFont>
+            <StyledFont><span style={{fontWeight:"bold"}}>Date Range:</span> <br/>{attendance.start_date} to {attendance.end_date}</StyledFont>
+            <StyledFont><span style={{fontWeight:"bold"}}>{trip.public ? 'PUBLIC' : "PRIVATE"}</span> <br/> {trip.public ? <PublicIcon/> : <LockIcon/>}</StyledFont>
           </Stack>
         </CardContent>
       </CardActionArea>

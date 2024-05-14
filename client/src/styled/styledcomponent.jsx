@@ -21,7 +21,7 @@ const ColorButton = styled(Button)(({theme}) => ({
 const StyledFont = styled(Typography) ({
   color: '#6d213c',
   fontWeight: '400',
-  padding: '4px'
+  margin: '0 10px'
 })
 
 export {ColorButton, StyledFont}

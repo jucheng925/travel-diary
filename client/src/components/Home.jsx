@@ -14,9 +14,9 @@ const Home = () => {
   return (
     <div className='home'>
       <Box
-        sx={{ mx: 'auto', width: 500, my: 3,
+        sx={{ mx: 'auto', width: 500, mt: 3,
         textAlign: 'center', fontWeight: '500', color:'#FFF7BA' }}>
-        Wanderlog: An on-the-go travel diary where you can make a post or upload a picture on the fly. When going on a vacation, there are tons of memories to make. 
+        <span style={{fontWeight: "900", fontSize: "20px"}}>Wanderlog:</span> An on-the-go travel diary where you can make a post or upload a picture on the fly. When going on a vacation, there are tons of memories to make. 
         Now you do not know to worry about remembering it all. Just make a post everyday.
       </Box>
 
@@ -28,7 +28,7 @@ const Home = () => {
           justifyContent="flex-start"
           alignItems="stretch"
           spacing={4}
-          margin="0 30px"
+          margin="30px"
           divider={<Divider flexItem sx={{borderColor: 'otherColor.main'}}/>}
           >
 
@@ -38,7 +38,7 @@ const Home = () => {
           <OfferStatus/>
           <div>
             <Typography variant='h5' fontWeight={"500"} mb={2}>All Trips</Typography>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
               {currentUser.attendances.map((attendance)=> (
                 <Grid item xs={2} sm={4} md={4} key={attendance.id}>
                   <TripCard attendance={attendance}/>
