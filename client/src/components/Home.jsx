@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext'
 import TripCard from './TripCard'
 import OfferStatus from './OfferStatus'
 import { Box, Divider, Grid, Stack, Typography } from '@mui/material'
-import { ColorButton } from '../styled/button'
+import { ColorButton } from '../styled/styledcomponent'
 
 
 const Home = () => {

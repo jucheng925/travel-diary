@@ -3,7 +3,7 @@ import * as yup from 'yup'
 import {useFormik} from 'formik'
 import { UserContext } from '../context/UserContext'
 import { Link } from 'react-router-dom'
-import { ColorButton } from '../styled/button'
+import { ColorButton } from '../styled/styledcomponent'
 import { Typography } from '@mui/material'
 
 

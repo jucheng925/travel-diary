@@ -1,20 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { UserProvider } from "../context/UserContext"
-import Navbar from "../components/Navbar"
-import Home from "../components/Home"
-import Logout from "../components/Logout"
-import Signup from "../components/Signup"
-import CheckSession from "../components/CheckSession"
-import Profile from "../components/Profile"
-import TripPage from "../components/TripPage"
-import AllPosts from "../components/AllPosts"
-import TripAddForm from "../components/TripAddForm"
-import OfferForm from "../components/OfferForm"
+import { UserProvider } from "./context/UserContext"
+import Home from "./components/Home"
+import Logout from "./components/Logout"
+import Signup from "./components/Signup"
+import CheckSession from "./components/CheckSession"
+import Profile from "./components/Profile"
+import TripPage from "./components/TripPage"
+import AllPosts from "./components/AllPosts"
+import TripAddForm from "./components/TripAddForm"
+import OfferForm from "./components/OfferForm"
+import Navbar from "./components/Navbar"
 import { ThemeProvider } from "@mui/material"
 import { myTheme } from "./styled/theme"
 import "./styled/app.css"
-
-
 
 function App() {
 

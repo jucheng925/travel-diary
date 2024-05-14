@@ -1,4 +1,4 @@
-import { Button, styled } from "@mui/material";
+import { Button, Typography, styled } from "@mui/material";
 import { purple } from "@mui/material/colors";
 
 // const StyledButton= styled(Button) ({
@@ -18,4 +18,10 @@ const ColorButton = styled(Button)(({theme}) => ({
     textTransform: 'capitalize'
 }));
 
-export {ColorButton}
+const StyledFont = styled(Typography) ({
+  color: '#6d213c',
+  fontWeight: '400',
+  padding: '4px'
+})
+
+export {ColorButton, StyledFont}
