@@ -3,6 +3,8 @@ import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
+import { ColorButton, StyledFont } from '../styled/styledcomponent'
+import { Typography } from '@mui/material'
 
 const OfferForm = () => {
   const location = useLocation()
@@ -55,20 +57,22 @@ const OfferForm = () => {
   return (
     <div className='body'>
       <form onSubmit={formik.handleSubmit}>
-        <h1>Add another user to collaborate</h1>
-        <h2>Trip: {trip.country}, {trip.city_state}</h2>
-        <div className ='formcontainer'>
+        <Typography variant='h4' color="secondary.main" p={3} sx={{fontWeight: "bold", textAlign: "center"}}>Add an user to collaborate with 
+            <br/> Trip {trip.country}, {trip.city_state} </Typography>
           <hr />
+        <div className ='formcontainer'>
           <div>
             <label htmlFor="recipient_email"><strong> Recipient email:  </strong></label>
             <input type="text" id='recipient_email' value={formik.values.recipient_email} onChange={formik.handleChange} />
             {displayErrors(formik.errors.recipient_email)}
           </div>
-          <button type="submit">Send a request</button>
+          <ColorButton type="submit">Send a request</ColorButton>
           {displayErrors(error)}
         </div>
+        <Typography variant='h6' p={2} sx={{textAlign: "center"}}>
+          <Link to={`/trips/${trip.id}`} style={{color: '#3A2449'}}>Return to Previous Page</Link>
+        </Typography> 
       </form>
-      <Link to={`/trips/${trip.id}`}>Return to Previous Page</Link>
     </div>
   )
 }

@@ -57,7 +57,7 @@ const TripInfoCard = ({trip, updateTripBack}) => {
                   sx={{ bgcolor: '#97ead2'}}/>
               ))}
           </AvatarGroup>
-        </Box> : "PRIVATE"}
+        </Box> : <StyledFont sx={{fontWeight: "bold"}}>**PRIVATE**</StyledFont>}
       </Box>
     </Box>
   )

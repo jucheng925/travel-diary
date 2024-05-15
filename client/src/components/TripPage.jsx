@@ -5,6 +5,7 @@ import PostCard from './PostCard';
 import PostAddForm from './PostAddForm';
 import { Box, Stack } from '@mui/material';
 import TripInfoCard from './TripInfoCard';
+import { StyledFont } from '../styled/styledcomponent';
 
 const TripPage = () => {
   const params = useParams()
@@ -99,9 +100,10 @@ const TripPage = () => {
         </Box>
 
         {trip.public ? 
-          <Box p={2} flex={1} bgcolor="pink" >
+          <Box p={3} flex={1} bgcolor="#0d5c63" >
             <h2>Collaboration</h2>
-            <Link to={"/trips/request"} state={{trip}}>Add another user</Link>
+
+            <Link style={{fontWeight: "bolder"}} to={"/trips/request"} state={{trip}}>Add another user</Link>
             <div>
               {filterMyOffer.map((offer) => <OfferStatus key ={offer.id} offer={offer}/>)}
             </div>
