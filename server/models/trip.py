@@ -21,7 +21,7 @@ class Trip(db.Model, SerializerMixin):
 
 
     # trip.posts, trip.attendances, 
-    serialize_rules=('-attendances.trip', '-attendances.user', 
+    serialize_rules=('-attendances.trip', '-attendances.user',
                      '-posts.user.attendances', '-posts.user.trips', '-posts.user.posts','-posts.trip', 
                      '-offers.trip', '-offers.user')
 

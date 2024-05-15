@@ -1,11 +1,10 @@
 import React, {useEffect, useState, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
-import {Cloudinary} from "@cloudinary/url-gen";
-import {AdvancedImage} from '@cloudinary/react';
-import UploadWidget from './UploadWidget';
 import PostCard from './PostCard';
 import PostAddForm from './PostAddForm';
+import { Box, Stack } from '@mui/material';
+import TripInfoCard from './TripInfoCard';
 
 const TripPage = () => {
   const params = useParams()
@@ -14,11 +13,6 @@ const TripPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [showAddPost, setShowAddPost] = useState(false)
 
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: 'wanderlog'
-    }
-  });
   
   useEffect(()=> {
     fetch(`/api/trips/${params.id}`)
@@ -89,27 +83,11 @@ const TripPage = () => {
     {isLoading ? 
       <h1>Loading...</h1>
     : 
-      <>
-        <div>
-          <ul>{trip.country}</ul>
-          <ul>{trip.city_state}</ul>
-          <ul>{trip.vacation_type}</ul>
-          <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
+      <Stack direction="row" spacing={2} justifyContent="space-between">
+        <TripInfoCard trip={trip} updateTripBack={updateTripBack}/>
 
-          <UploadWidget uploadPreset={'trip_cover'} onUpload={updateTripBack}/>
-        </div>
 
-        {trip.public ? 
-          <div>
-            <h2>Collaboration</h2>
-            <Link to={"/trips/request"} state={{trip}}>Add another user</Link>
-            <div>
-              {filterMyOffer.map((offer) => <OfferStatus key ={offer.id} offer={offer}/>)}
-            </div>
-          </div> :
-          null}
-
-        <div>
+        <Box flex={8} p={2} bgcolor="lightcoral">
           <h3>All Posts for this Trip</h3>
           <button onClick={()=>setShowAddPost(!showAddPost)}>
             {showAddPost ? "Close Form" : "Create a new post"}
@@ -118,8 +96,19 @@ const TripPage = () => {
             {showAddPost ? <PostAddForm trip={trip} onAddPost={addPost}/> : null}
           </div>
           {sortByDate().map((post) => <PostCard key={post.id} post={post} onDelete={deletePost} onEditPost={editPost}/>)}
-        </div>
-      </>
+        </Box>
+
+        {trip.public ? 
+          <Box p={2} flex={1} bgcolor="pink" >
+            <h2>Collaboration</h2>
+            <Link to={"/trips/request"} state={{trip}}>Add another user</Link>
+            <div>
+              {filterMyOffer.map((offer) => <OfferStatus key ={offer.id} offer={offer}/>)}
+            </div>
+          </Box> :
+          null}
+
+      </Stack>
     }
     </>)
 }

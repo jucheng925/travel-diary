@@ -3,7 +3,7 @@ from flask import request, session
 from sqlalchemy.exc import IntegrityError
 
 from config import db, api
-from models.models import User
+from models.models import User, Trip
 
 class Signup(Resource):
   def post(self):
@@ -77,3 +77,15 @@ api.add_resource(Signup, '/api/signup')
 api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(Login, '/api/login')
 api.add_resource(Logout, '/api/logout')
+
+class usersAttendTrip(Resource):
+   def get(self, tripid):
+      trip = Trip.query.filter_by(id = tripid).first()
+      if trip.public: 
+         users = trip.users
+         users_dict = [user.to_dict() for user in users]
+         return users_dict, 200
+      else:
+         return {"error": "This is a private trip"}, 401
+
+api.add_resource(usersAttendTrip, '/api/usersattendtrip/<int:tripid>')
