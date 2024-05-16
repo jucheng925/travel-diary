@@ -38,9 +38,9 @@ const Home = () => {
           <OfferStatus/>
           <div>
             <Typography variant='h5' fontWeight={"500"} mb={2}>All Trips</Typography>
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid container spacing={2} rowSpacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
               {currentUser.attendances.map((attendance)=> (
-                <Grid item xs={2} sm={4} md={4} key={attendance.id}>
+                <Grid item xs={2} md={3} key={attendance.id}>
                   <TripCard attendance={attendance}/>
                 </Grid>
               ))}

@@ -14,9 +14,9 @@ const TripAddForm = () => {
     city_state: yup.string(),
     vacation_type: yup.string().matches(/(Sightseeing|Cruises|Adventure|Culinary|Nature|RoadTrip|Family|Friends)/, { excludeEmptyString: true }),
     cover_image: yup.string(),
-    public: yup.boolean(),
-    start_date: yup.date(),
-    end_date: yup.date().min(yup.ref('start_date'), "End date can not be before start date")
+    public: yup.boolean().required("Please select one"),
+    start_date: yup.date().required("Please enter a start date"),
+    end_date: yup.date().required("Please enter a end date").min(yup.ref('start_date'), "End date can not be before start date")
   });
 
   const formik = useFormik({
