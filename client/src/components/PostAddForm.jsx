@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext'
 import UploadWidget from './UploadWidget'
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
+import { ColorButton } from '../styled/styledcomponent'
 
 const PostAddForm = ({trip, onAddPost}) => {
   const {currentUser} = useContext(UserContext)
@@ -21,7 +22,7 @@ const PostAddForm = ({trip, onAddPost}) => {
     title: yup.string().required("Title is required"),
     body: yup.string().min(3).max(500),
     photo: yup.string(),
-    feeling_score: yup.number().integer().min(0).max(10)
+    feeling_score: yup.number().integer().min(0).max(5)
   });
 
   const formik = useFormik({
@@ -75,7 +76,7 @@ const PostAddForm = ({trip, onAddPost}) => {
 
   return (
     <div className='body'>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} style={{width:"75%"}}>
         <h1>Create a New Post</h1>
         <div className='formcontainer'>
         <hr />
@@ -97,7 +98,7 @@ const PostAddForm = ({trip, onAddPost}) => {
             {uploadPic ? <AdvancedImage cldImg={cld.image(uploadPic) }/> : null}
 
             </div>
-          <button type="submit">Add post </button>
+          <ColorButton sx={{mt: "10px"}} type="submit">Add post </ColorButton>
           {displayErrors(error)}
 
         </div>

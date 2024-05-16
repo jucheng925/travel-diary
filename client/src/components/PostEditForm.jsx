@@ -21,7 +21,7 @@ const PostEditForm = ({post, setOpenEditForm, openEditForm, onEditPost}) => {
     title: yup.string().required("Title is required"),
     body: yup.string().min(3).max(500),
     photo: yup.string(),
-    feeling_score: yup.number().integer().min(0).max(10)
+    feeling_score: yup.number().integer().min(0).max(5)
   });
 
   const formik = useFormik({

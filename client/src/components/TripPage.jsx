@@ -5,7 +5,7 @@ import PostCard from './PostCard';
 import PostAddForm from './PostAddForm';
 import { Box, List, Stack, Typography } from '@mui/material';
 import TripInfoCard from './TripInfoCard';
-import { StyledFont } from '../styled/styledcomponent';
+import { ColorButton, StyledFont } from '../styled/styledcomponent';
 import OfferExtendStatus from './OfferExtendStatus';
 
 const TripPage = () => {
@@ -83,19 +83,21 @@ const TripPage = () => {
         <TripInfoCard trip={trip} updateTripBack={updateTripBack}/>
 
 
-        <Box flex={8} p={2} >
-          <h3>All Posts for this Trip</h3>
-          <button onClick={()=>setShowAddPost(!showAddPost)}>
-            {showAddPost ? "Close Form" : "Create a new post"}
-          </button>
-          <div>
+        <Box flex={6} p={3} >
+          <Stack spacing={1} alignItems="center">
+            <Typography variant='h4' color="secondary.main" p={3} sx={{fontWeight: "bold"}}>All Posts for this Trip</Typography>
+        
+            <ColorButton sx={{width: "40%"}} onClick={()=>setShowAddPost(!showAddPost)}>
+              {showAddPost ? "Close Form" : "Create a new post"}
+            </ColorButton>
             {showAddPost ? <PostAddForm trip={trip} onAddPost={addPost}/> : null}
-          </div>
-          {sortByDate().map((post) => <PostCard key={post.id} post={post} onDelete={deletePost} onEditPost={editPost}/>)}
+     
+            {sortByDate().map((post) => <PostCard key={post.id} post={post} onDelete={deletePost} onEditPost={editPost}/>)}
+          </Stack>
         </Box>
 
         {trip.public ? 
-          <Box p={3} flex={1} bgcolor="primary.main" >
+          <Box p={3} flex={2} bgcolor="primary.main" >
             <h2>Collaboration</h2>
             <Link style={{fontWeight: "bolder", padding: "20px 0"}} to={"/trips/request"} state={{trip}}>Add another user</Link>
             <List>

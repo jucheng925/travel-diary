@@ -73,7 +73,7 @@ class PostById(Resource):
                     db.session.commit()
                     return post.to_dict(), 200
                 except ValueError:
-                    return {"error": "Feeling Score must be between 0 and 10"}, 422
+                    return {"error": "Feeling Score must be between 0 and 5"}, 422
                 except IntegrityError:
                     return {"error": "Title is required"}, 422
 

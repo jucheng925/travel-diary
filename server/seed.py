@@ -65,10 +65,10 @@ if __name__ == "__main__":
     print("Creating posts ...")
 
     post1 = Post(title="Test post", body="This is my first post", user=bob, trip=trip1, feeling_score=2)
-    post2 = Post(title="First Visit", body="First Vacation and then we saw the hollywood sign", user=bob, trip=trip2, feeling_score=10)
+    post2 = Post(title="First Visit", body="First Vacation and then we saw the hollywood sign", user=bob, trip=trip2, feeling_score=5)
     post3 = Post(title="What a view", body="This is my first post", user=kim, trip=trip3, feeling_score=2)
-    post4 = Post(title="Favorite Place", body="Today, I found my favorite place on this trip", user=bob, trip=trip1, feeling_score=5)
-    post5 = Post(title="Ice cream", body="YUM YUM, icecream", user=kim, trip=trip3, feeling_score=8)
+    post4 = Post(title="Favorite Place", body="Today, I found my favorite place on this trip", user=bob, trip=trip1, feeling_score=4)
+    post5 = Post(title="Ice cream", body="YUM YUM, icecream", user=kim, trip=trip3, feeling_score=1)
 
 
     db.session.add_all([post1, post2, post3, post4, post5])
