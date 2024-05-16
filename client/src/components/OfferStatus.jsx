@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import OfferCard from './OfferCard'
+import { Box, Stack, Typography } from '@mui/material'
+import { ColorButton } from '../styled/styledcomponent'
 
 const OfferStatus = () => {
   const [myOffers, setMyOffers] = useState([])
@@ -23,17 +25,23 @@ const OfferStatus = () => {
 
 
   return (
-    <div>
-      <p>You have {myOffers.length} pending invitation. </p>
-      {myOffers.length !== 0 ? <button onClick={()=>setShowOffers(!showOffers)}>View More Info</button> : null}
-      <div>
-        {showOffers ? 
-          <>
-            {myOffers.map((offer)=> <OfferCard key={offer.id} offer={offer} onUpdate={updatedOffer}/>)}
-          </>
+    <Stack direction="row" spacing={4}>
+      <Box>
+        <Typography variant='subtitle1'>You have {myOffers.length} pending invitation(s).</Typography>
+        {myOffers.length !== 0 ? 
+          <ColorButton onClick={()=>setShowOffers(!showOffers)}>
+            {showOffers ? "Hide invitation" : "View More Info"}
+          </ColorButton> 
           : null}
-      </div>
-    </div>
+      </Box>
+      <Box>
+        {showOffers ? 
+          <Stack direction="row" spacing={1}>
+            {myOffers.map((offer)=> <OfferCard key={offer.id} offer={offer} onUpdate={updatedOffer}/>)}
+            </Stack>
+          : null}
+      </Box>
+    </Stack>
   )
 }
 

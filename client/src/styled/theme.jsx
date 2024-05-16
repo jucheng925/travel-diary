@@ -9,7 +9,8 @@ export const myTheme = createTheme({
           main: '#97EAD2',
         },
         otherColor:{
-          main:"#3A2449"
+          main:"#3A2449",
+          light: "#F1EDF5"
           //purple
         },
         error: {

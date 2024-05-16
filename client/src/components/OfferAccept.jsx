@@ -2,6 +2,8 @@ import React, {useContext} from 'react'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
 import { UserContext } from '../context/UserContext'
+import { Box, Typography } from '@mui/material'
+import { SecondButton } from '../styled/styledcomponent'
 
 const OfferAccept = ({offer, handleOfferChange}) => {
   const {userAddedTrip} = useContext(UserContext)
@@ -49,18 +51,18 @@ const OfferAccept = ({offer, handleOfferChange}) => {
   
 
   return (
-    <form onSubmit = {formik.handleSubmit}>
-      <p>Do you want to edit your attendance for this trip? </p>
-      <div className ='formcontainer'>
+    <form onSubmit = {formik.handleSubmit} style={{ border: "none", width: "80%"}}>
+      <Typography variant='subtitle1'>Do you want to edit your attendance for this trip? </Typography>
+      <Box m={1}>
         <label htmlFor="start_date"><strong> Start Date:  </strong></label>
         <input type="date" id="start_date" value={formik.values.start_date} onChange={formik.handleChange} />
         {displayErrors(formik.errors.start_date)}
-
+        <br />
         <label htmlFor="end_date"><strong>Trip end date: </strong></label>
         <input type="date" id="end_date" value={formik.values.end_date} onChange={formik.handleChange} />
         {displayErrors(formik.errors.end_date)}
-      </div>
-      <button type="submit"> Accept invitation </button>
+      </Box>
+      <SecondButton type="submit"> Accept invitation </SecondButton>
     </form>
     )
   }

@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import OfferAccept from './OfferAccept'
+import { Box, Button, Typography } from '@mui/material'
+import { SecondButton } from '../styled/styledcomponent'
 
 
 const OfferCard = ({offer, onUpdate}) => {
@@ -22,12 +24,14 @@ const OfferCard = ({offer, onUpdate}) => {
   }
 
   return (
-    <div>
-      <p>{offer.user.username} is inviting you to collaborate on Trip to {offer.trip.country}, {offer.trip.city_state}. </p>
-      <button onClick = {()=>setShowAccept(!showAccept)}>Accept</button>
+    <Box>
+      <Typography variant='subtitle1'>
+        {offer.user.username} is inviting you to collaborate on <br/> the Trip to {offer.trip.country}, {offer.trip.city_state}.
+      </Typography>
+      <SecondButton onClick = {()=>setShowAccept(!showAccept)}>Accept</SecondButton>
+      <SecondButton onClick={()=>handleOfferChange("declined")}>Decline</SecondButton>
       {showAccept ? <OfferAccept offer={offer} handleOfferChange={handleOfferChange}/> : null}
-      <button onClick={()=>handleOfferChange("declined")}>Decline</button>
-    </div>
+    </Box>
   )
 }
 
