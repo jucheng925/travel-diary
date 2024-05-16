@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext'
 import UploadWidget from './UploadWidget'
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
+import { ColorButton } from '../styled/styledcomponent'
 
 const PostEditForm = ({post, setOpenEditForm, openEditForm, onEditPost}) => {
   const {currentUser} = useContext(UserContext)
@@ -71,7 +72,7 @@ const PostEditForm = ({post, setOpenEditForm, openEditForm, onEditPost}) => {
 
   return (
     <div className='body'>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} style={{width:"75%"}}>
         <h1>Edit Post</h1>
         <div className='formcontainer'>
         <hr />
@@ -88,12 +89,13 @@ const PostEditForm = ({post, setOpenEditForm, openEditForm, onEditPost}) => {
             <input type="number" id="feeling_score" value={formik.values.feeling_score} onChange={formik.handleChange} />
             {displayErrors(formik.errors.feeling_score)}
 
-            <UploadWidget uploadPreset={'add_post'} onUpload={createPreview}/>
-
             {uploadPic ? <AdvancedImage cldImg={cld.image(uploadPic) }/> : <AdvancedImage cldImg={cld.image(post.photo)}/>}
+            
+            <UploadWidget uploadPreset={'add_post'} onUpload={createPreview} />
 
           </div>
-          <button type="submit">Edit post </button>
+          <ColorButton sx={{m: "10px"}} type="submit">Edit post </ColorButton>
+          <ColorButton sx={{m: "10px"}} onClick={()=>setOpenEditForm(!openEditForm)}>Close Form</ColorButton>
           {displayErrors(error)}
 
         </div>

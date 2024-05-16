@@ -67,3 +67,31 @@ h1 {
   text-align:left;
   
 }
+
+#nonoverlay {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 90pz;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+  
+#overlay {
+    position: absolute;
+    display: display;
+    width: 100%;
+    height: 100%;
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}

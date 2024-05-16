@@ -8,7 +8,9 @@ import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import { focusOn } from '@cloudinary/url-gen/qualifiers/gravity';
 import { FocusOn } from '@cloudinary/url-gen/qualifiers/focusOn';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import StarIcon from '@mui/icons-material/Star';
+
 
 const PostCard = ({post, onDelete, onEditPost}) => {
   const {currentUser} = useContext(UserContext)
@@ -30,7 +32,6 @@ const PostCard = ({post, onDelete, onEditPost}) => {
   }
 
   const handleEdit = () => {
-    console.log("open edit form/overlay")
     setOpenEditForm(!openEditForm)
   }
 
@@ -72,9 +73,6 @@ const PostCard = ({post, onDelete, onEditPost}) => {
         <CardContent>
           <Typography>Feeling Score:</Typography>
             {ratingStars}
-          <StarIcon/>
-          <StarIcon/>
-          <StarIcon/>
         </CardContent>
 
         {currentUser.id === post.user.id ?
@@ -82,13 +80,16 @@ const PostCard = ({post, onDelete, onEditPost}) => {
             <IconButton aria-label="delete post" onClick={handleDelete}>
               <DeleteIcon fontSize="large" color="otherColor"/>
             </IconButton>
-            <button onClick={handleEdit}>Edit</button>
-            {openEditForm ? <PostEditForm post={post} onEditPost={onEditPost} setOpenEditForm={setOpenEditForm} openEditForm={openEditForm}/> : null}
+            <IconButton aria-label="edit post" onClick={handleEdit}>
+              <EditIcon fontSize="large" color="otherColor"/>
+            </IconButton>
           </CardActions> :
             null
-        }
+          }
       </Stack>
-
+      <div id={openEditForm ? 'overlay':'nonoverlay'}>
+        <PostEditForm post={post} onEditPost={onEditPost} setOpenEditForm={setOpenEditForm} openEditForm={openEditForm}/>
+      </div>
     </Card>
   )
 }
