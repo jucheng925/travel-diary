@@ -1,16 +1,15 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import EditProfile from './EditProfile'
 import { UserContext } from '../context/UserContext'
 import UploadWidget from './UploadWidget'
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
+import { Box, Stack, Typography } from '@mui/material'
 
 
 const Profile = () => {
   const {currentUser, updatedUser} = useContext(UserContext)
   
-
   const cld = new Cloudinary({
     cloud: {
       cloudName: 'wanderlog'
@@ -23,16 +22,18 @@ const Profile = () => {
   }
 
   return (
-    <div className='body'>
+    <Stack direction="row">
       <EditProfile />
-      <div>
-        <h3>Profile Pic</h3>
-        <AdvancedImage cldImg={cld.image(currentUser.profile_pic)}/>
-        
-        <UploadWidget onUpload={updateBackEnd} uploadPreset={'upload_profile'}/>
-      </div>
-      <Link to="/"> Return to Home Page </Link>
-    </div>
+      <Box flex={2} p={4}>
+        <Typography color="secondary.main" variant='h4'> Current Avatar</Typography>
+        <div>
+          <AdvancedImage cldImg={cld.image(currentUser.profile_pic)}/> 
+          <br/>
+          <Typography color="secondary.main">Edit your avatar: </Typography>
+          <UploadWidget onUpload={updateBackEnd} uploadPreset={'upload_profile'}/>
+        </div>
+      </Box>
+    </Stack>
   )
 }
 
