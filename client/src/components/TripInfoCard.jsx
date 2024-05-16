@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup, Box } from '@mui/material'
+import { Avatar, AvatarGroup, Box, Tooltip } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { StyledFont } from '../styled/styledcomponent'
 import { AdvancedImage } from '@cloudinary/react'
@@ -26,16 +26,9 @@ const TripInfoCard = ({trip, updateTripBack}) => {
   }, [])
 
   const avatarURL = (user) => cld.image(user.profile_pic).resize(thumbnail().width(50).height(50).zoom(0.85).gravity(focusOn(FocusOn.face()))).toURL()
-  const avatarsArray = usersAttend.map((user) => {
-    <Avatar key={user.id}
-    alt={user.username}
-    src={avatarURL(user)} 
-    sx={{ bgcolor: '#97ead2'}}/>
-  })
-
 
   return (
-    <Box flex={4} position="sticky" bgcolor="skyblue" p={2} sx={{ display: { xs: "none", sm: "block" }}}>
+    <Box flex={4} position="sticky" bgcolor="success.main" p={2} sx={{ display: { xs: "none", sm: "block" }}}>
       <StyledFont p={1} variant='h4'>{trip.city_state}, {trip.country} </StyledFont>
       <StyledFont p={1} variant="h6" >{trip.vacation_type}</StyledFont>
       <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
@@ -51,10 +44,12 @@ const TripInfoCard = ({trip, updateTripBack}) => {
             <StyledFont sx={{fontWeight: "bold"}}>**PUBLIC**</StyledFont>
             <StyledFont sx={{margin: "0 15px"}}>Contributors: </StyledFont>
               {usersAttend.map((user) => (
-                <Avatar key={user.id}
-                  alt={user.username}
-                  src={avatarURL(user)} 
-                  sx={{ bgcolor: '#97ead2'}}/>
+                <Tooltip title={user.username}>
+                  <Avatar key={user.id}
+                    alt={user.username}
+                    src={avatarURL(user)} 
+                    sx={{ bgcolor: '#97ead2'}}/>
+                </Tooltip>
               ))}
           </AvatarGroup>
         </Box> : <StyledFont sx={{fontWeight: "bold"}}>**PRIVATE**</StyledFont>}

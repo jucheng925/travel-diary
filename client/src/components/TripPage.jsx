@@ -3,9 +3,10 @@ import { useParams, Link } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import PostCard from './PostCard';
 import PostAddForm from './PostAddForm';
-import { Box, Stack } from '@mui/material';
+import { Box, List, Stack, Typography } from '@mui/material';
 import TripInfoCard from './TripInfoCard';
 import { StyledFont } from '../styled/styledcomponent';
+import OfferExtendStatus from './OfferExtendStatus';
 
 const TripPage = () => {
   const params = useParams()
@@ -71,13 +72,7 @@ const TripPage = () => {
     setTrip({...trip, posts: updatedPosts})
   }
 
-  const OfferStatus = ({offer}) => {
-    return (
-      <div>
-        <p>Collabaration Invite sent to {offer.recipient_email} {offer.status == "pending" ? "is" : "was"} {offer.status}</p>
-      </div>
-    )
-  }
+
   
   return (
     <>
@@ -88,7 +83,7 @@ const TripPage = () => {
         <TripInfoCard trip={trip} updateTripBack={updateTripBack}/>
 
 
-        <Box flex={8} p={2} bgcolor="lightcoral">
+        <Box flex={8} p={2} >
           <h3>All Posts for this Trip</h3>
           <button onClick={()=>setShowAddPost(!showAddPost)}>
             {showAddPost ? "Close Form" : "Create a new post"}
@@ -100,13 +95,14 @@ const TripPage = () => {
         </Box>
 
         {trip.public ? 
-          <Box p={3} flex={1} bgcolor="#0d5c63" >
+          <Box p={3} flex={1} bgcolor="primary.main" >
             <h2>Collaboration</h2>
-
-            <Link style={{fontWeight: "bolder"}} to={"/trips/request"} state={{trip}}>Add another user</Link>
-            <div>
-              {filterMyOffer.map((offer) => <OfferStatus key ={offer.id} offer={offer}/>)}
-            </div>
+            <Link style={{fontWeight: "bolder", padding: "20px 0"}} to={"/trips/request"} state={{trip}}>Add another user</Link>
+            <List>
+              <Typography variant='h5'>Invite Status</Typography>
+              <hr />
+              {filterMyOffer.map((offer) => <OfferExtendStatus key ={offer.id} offer={offer}/>)}
+            </List>
           </Box> :
           null}
 
