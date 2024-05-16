@@ -42,7 +42,7 @@ const PostCardSummary = ({post}) => {
 
     <CardContent>
       <Stack direction="row" justifyContent="space-evenly">
-        <Typography variant={{xs: 'subtitle2', sm: 'h5'}}>{post.trip.country}{post.trip.city_state ? "," : null} {post.trip.city_state} </Typography>
+        <Typography variant='h5'>{post.trip.country}{post.trip.city_state ? "," : null} {post.trip.city_state} </Typography>
         <Typography>Feeling Score:
           {ratingStars}
         </Typography>
