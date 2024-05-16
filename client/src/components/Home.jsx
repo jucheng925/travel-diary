@@ -49,7 +49,7 @@ const Home = () => {
           <div>
             <ColorButton variant='contained' color='secondary'>
               <Link className="link-styles" to={'/all'} >
-                  See All Posts
+                  See All Your Posts
               </Link>
             </ColorButton>
           </div>

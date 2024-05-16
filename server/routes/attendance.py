@@ -12,7 +12,6 @@ class Attendances(Resource):
         attendances_dict = [attendance.to_dict() for attendance in attendances]
         return attendances_dict, 200
     
-
     def post(self):
         user = User.query.filter(User.id == session.get('user_id')).first()
         if user:
@@ -21,7 +20,6 @@ class Attendances(Resource):
                 start_date = datetime.datetime.strptime(data.get("start_date"), '%Y-%m-%d')
                 end_date = datetime.datetime.strptime(data.get("end_date"), '%Y-%m-%d')
                 trip_id = data.get("trip_id")
-                # user_id = user.id
 
                 new_attendance = Attendance(start_date=start_date, end_date=end_date, trip_id=trip_id, user=user)
                 db.session.add(new_attendance)
@@ -30,7 +28,5 @@ class Attendances(Resource):
                 return new_attendance.to_dict(), 201
             except ValueError as err:
                 return {"error" : str(err)}, 422
-            
-
     
 api.add_resource(Attendances, '/api/attendances')

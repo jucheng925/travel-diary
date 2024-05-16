@@ -34,6 +34,7 @@ class Offers(Resource):
             
 api.add_resource(Offers, '/api/offers')
 
+
 class CheckMyOffers(Resource):
     def get(self):
         user = User.query.filter(User.id == session.get('user_id')).first()
@@ -45,6 +46,7 @@ class CheckMyOffers(Resource):
             return {"error": "Not Authorized"}, 401
         
 api.add_resource(CheckMyOffers, '/api/checkMyOffers')
+
 
 class OfferById(Resource):
     def patch(self, id):
@@ -60,7 +62,6 @@ class OfferById(Resource):
                     return offer.to_dict(), 200
             except ValueError as err:
                 return {"error" : str(err)}, 422
-
 
 api.add_resource(OfferById, '/api/offers/<int:id>')
 

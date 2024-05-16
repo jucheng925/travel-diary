@@ -10,7 +10,7 @@ import OfferExtendStatus from './OfferExtendStatus';
 
 const TripPage = () => {
   const params = useParams()
-  const {currentUser, contextAddPost, contextDeletePost, contextEditPost} = useContext(UserContext)
+  const {currentUser, contextAddPost, contextDeletePost, userEditTrip, contextEditPost} = useContext(UserContext)
   const [trip, setTrip] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [showAddPost, setShowAddPost] = useState(false)
@@ -35,7 +35,10 @@ const TripPage = () => {
      body: JSON.stringify({cover_image: public_id}),
      })
      .then(resp => resp.json())
-     .then(data => setTrip(data))
+     .then(data => {
+        setTrip(data)
+        userEditTrip(data)
+      })
     }
 
   const sortByDate = () => {

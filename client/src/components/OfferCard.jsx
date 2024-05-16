@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import OfferAccept from './OfferAccept'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { SecondButton } from '../styled/styledcomponent'
 
 

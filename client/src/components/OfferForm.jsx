@@ -3,7 +3,7 @@ import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
-import { ColorButton, StyledFont } from '../styled/styledcomponent'
+import { ColorButton} from '../styled/styledcomponent'
 import { Typography } from '@mui/material'
 
 const OfferForm = () => {

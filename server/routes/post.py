@@ -38,6 +38,9 @@ class Posts(Resource):
         else:
             return {"error" : "Not Authorized"}, 401
         
+api.add_resource(Posts, '/api/posts')
+
+        
 class PostById(Resource):
     def get(self, id):
         post = Post.query.filter_by(id=id).first()
@@ -76,7 +79,5 @@ class PostById(Resource):
                     return {"error": "Feeling Score must be between 0 and 5"}, 422
                 except IntegrityError:
                     return {"error": "Title is required"}, 422
-
         
-api.add_resource(Posts, '/api/posts')
 api.add_resource(PostById, '/api/posts/<int:id>')

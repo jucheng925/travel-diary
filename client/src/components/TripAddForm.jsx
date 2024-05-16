@@ -81,16 +81,11 @@ const TripAddForm = () => {
               <option value="Adventure"> Adventure </option>
               <option value="Culinary"> Culinary </option>
               <option value="Nature"> Nature </option>
-              <option value="Roadtrip"> Roadtrip </option>
+              <option value="RoadTrip"> Road Trip </option>
               <option value="Family"> Family </option>
               <option value="Friends"> Friends </option>
             </select>
             {displayErrors(formik.errors.vacation_type)}
-            
-
-            {/* <UploadWidget uploadPreset={'add_post'} onUpload={createPreview}/>
-
-            {uploadPic ? <AdvancedImage cldImg={cld.image(uploadPic) }/> : null} */}
 
             <label htmlFor="start_date"><strong>Trip start date: </strong></label>
             <input type="date" id="start_date" value={formik.values.start_date} onChange={formik.handleChange} />

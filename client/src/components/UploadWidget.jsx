@@ -9,7 +9,7 @@ const UploadWidget = ({onUpload, uploadPreset}) => {
     widgetRef.current = cloudinaryRef.current.createUploadWidget({
       cloudName: 'wanderlog',
       uploadPreset: uploadPreset,
-      sources: ['local', 'url', 'camera', 'google_drive']
+      sources: ['local', 'url', 'camera']
     }, (error, result) => {
       onUpload(result.info.public_id)})
   }, [])

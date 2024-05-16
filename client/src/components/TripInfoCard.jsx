@@ -29,7 +29,7 @@ const TripInfoCard = ({trip, updateTripBack}) => {
 
   return (
     <Box flex={4} position="sticky" bgcolor="success.main" p={2} sx={{ display: { xs: "none", sm: "block" }}}>
-      <StyledFont p={1} variant='h4'>{trip.city_state}, {trip.country} </StyledFont>
+      <StyledFont p={1} variant='h4'>{trip.city_state}{trip.city_state ? "," : ""} {trip.country} </StyledFont>
       <StyledFont p={1} variant="h6" >{trip.vacation_type}</StyledFont>
       <AdvancedImage cldImg={cld.image(trip.cover_image)}/>
 
@@ -44,8 +44,8 @@ const TripInfoCard = ({trip, updateTripBack}) => {
             <StyledFont sx={{fontWeight: "bold"}}>**PUBLIC**</StyledFont>
             <StyledFont sx={{margin: "0 15px"}}>Contributors: </StyledFont>
               {usersAttend.map((user) => (
-                <Tooltip title={user.username}>
-                  <Avatar key={user.id}
+                <Tooltip title={user.username} key={user.id}>
+                  <Avatar 
                     alt={user.username}
                     src={avatarURL(user)} 
                     sx={{ bgcolor: '#97ead2'}}/>

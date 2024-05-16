@@ -9,7 +9,6 @@ const OfferExtendStatus = ({offer}) => {
         secondary={offer.status}
         />
 
-        {/* <p>Collabaration Invite sent to {offer.recipient_email} {offer.status == "pending" ? "is" : "was"} {offer.status}</p> */}
     </ListItem>
   )
 }

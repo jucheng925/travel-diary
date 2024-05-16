@@ -40,8 +40,8 @@ class Trips(Resource):
         else:
             return {"error" : "Not Authorized"}, 401
 
-
 api.add_resource(Trips, '/api/trips')
+
 
 class TripById(Resource):
     def get(self, id):

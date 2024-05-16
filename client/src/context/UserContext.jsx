@@ -49,6 +49,17 @@ const UserProvider = ({children}) => {
       setCurrentUser({...currentUser, attendances: newAttendancesList})
     }
 
+    const userEditTrip = (newTripObj) => {
+      const updatedAttendancesList = currentUser.attendances.map((attendance) => {
+        if (attendance.trip.id == newTripObj.id) {
+          return {...attendance, trip: newTripObj}
+        } else {
+          return attendance
+        }
+      })
+      setCurrentUser({...currentUser, attendances: updatedAttendancesList})
+    }
+
     const contextAddPost = (newPost) => {
       const newPostList = [...currentUser.posts, newPost]
       setCurrentUser({...currentUser, posts: newPostList})
@@ -72,7 +83,7 @@ const UserProvider = ({children}) => {
 
     return (
         <UserContext.Provider 
-          value={{currentUser, login, logout, updatedUser, userAddedTrip, contextAddPost, contextEditPost, contextDeletePost}}>
+          value={{currentUser, login, logout, updatedUser, userAddedTrip, userEditTrip, contextAddPost, contextEditPost, contextDeletePost}}>
             { children }
         </UserContext.Provider>
       )

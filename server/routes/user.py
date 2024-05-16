@@ -27,7 +27,9 @@ class Signup(Resource):
     except ValueError as err:
        return {"error" : str(err)}, 422
        
-    
+api.add_resource(Signup, '/api/signup')
+
+
 class CheckSession(Resource):
    def get(self):
       user = User.query.filter(User.id == session.get('user_id')).first()
@@ -35,6 +37,9 @@ class CheckSession(Resource):
          return user.to_dict(), 200
       else:
          return {"error" : "Not Authorized"}, 401
+
+api.add_resource(CheckSession, '/api/check_session')
+
 
 class Login(Resource):
    def post(self):
@@ -48,11 +53,17 @@ class Login(Resource):
       else:
          return {"error": "Incorrect username or password"}, 422
       
+api.add_resource(Login, '/api/login')
+
+
 class Logout(Resource):
    def delete(self):
       session["user_id"] = None
       return {"error": "Log out"}, 204
    
+api.add_resource(Logout, '/api/logout')
+
+
 class UpdateCurrentUser(Resource):
    def patch(self):
       user = User.query.filter(User.id == session.get('user_id')).first()
@@ -70,13 +81,9 @@ class UpdateCurrentUser(Resource):
       else:
          return {"error" : "Not Authorized. Please log in"}, 401
 
-
-
 api.add_resource(UpdateCurrentUser, '/api/updatecurrentuser')
-api.add_resource(Signup, '/api/signup')
-api.add_resource(CheckSession, '/api/check_session')
-api.add_resource(Login, '/api/login')
-api.add_resource(Logout, '/api/logout')
+
+
 
 class usersAttendTrip(Resource):
    def get(self, tripid):
