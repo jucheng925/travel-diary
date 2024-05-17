@@ -18,11 +18,13 @@ const TripInfoCard = ({trip, updateTripBack}) => {
   });
 
   useEffect(()=> {
-    fetch(`/api/usersattendtrip/${trip.id}`).then((resp) => {
-      if (resp.ok) {
-        resp.json().then((users) => setUsersAttend(users));
-      }
-    });
+    if (trip.public) {
+      fetch(`/api/usersattendtrip/${trip.id}`).then((resp) => {
+        if (resp.ok) {
+          resp.json().then((users) => setUsersAttend(users));
+        }
+      });
+    }
   }, [])
 
   const avatarURL = (user) => cld.image(user.profile_pic).resize(thumbnail().width(50).height(50).zoom(0.85).gravity(focusOn(FocusOn.face()))).toURL()
