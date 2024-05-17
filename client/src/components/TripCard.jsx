@@ -34,7 +34,7 @@ const TripCard = ({attendance}) => {
             spacing={1}
             divider={<hr/>}
             >
-            <StyledFont><span style={{fontWeight:"bold"}}>Location:</span> <br/> {trip.country}, {trip.city_state}</StyledFont>
+            <StyledFont><span style={{fontWeight:"bold"}}>Location:</span> <br/> {trip.country}{trip.city_state ? "," : ""} {trip.city_state}</StyledFont>
             <StyledFont><span style={{fontWeight:"bold"}}>Date Range:</span> <br/>{attendance.start_date} to {attendance.end_date}</StyledFont>
             <StyledFont><span style={{fontWeight:"bold"}}>{trip.public ? 'PUBLIC' : "PRIVATE"}</span> <br/> {trip.public ? <PublicIcon/> : <LockIcon/>}</StyledFont>
           </Stack>

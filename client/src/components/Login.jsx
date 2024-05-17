@@ -55,7 +55,7 @@ return (
     <form onSubmit={formik.handleSubmit}>
         <h1>Login</h1>
         <div className='formcontainer'>
-        <hr className='formline'/>
+        <hr />
         <div className='container'>
             <label htmlFor='username'><strong>Username: </strong></label>
             <input type="text" id="username" value={formik.values.username} onChange={formik.handleChange} autoComplete='on'/>
@@ -63,7 +63,6 @@ return (
             <label htmlFor="password"><strong>Password:</strong></label>
             <input type="password" id="password" value={formik.values.password} onChange={formik.handleChange} autoComplete='new-password'/>
             {displayErrors(formik.errors.password)}
-
         </div>
         <ColorButton sx={{width: '100%'}} type="submit">Log In</ColorButton>
         {displayErrors(error)}

@@ -58,7 +58,7 @@ const Navbar = () => {
       <StyledToolbar>
       <Typography variant="h6">
         <NavLink to= "/" style = {activeState} className="nav-link">
-        WanderLog 
+          WanderLog 
         </NavLink>
       </Typography>
         {currentUser ? 
@@ -91,8 +91,8 @@ const Navbar = () => {
             : null }
       </StyledToolbar>
       <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
+        id="positioned-menu"
+        aria-labelledby="positioned-button"
         open={open}
         onClose={(e) => setOpen(false)}
         anchorOrigin={{
