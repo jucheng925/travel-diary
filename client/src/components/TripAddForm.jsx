@@ -25,7 +25,7 @@ const TripAddForm = () => {
       city_state: "",
       vacation_type: "",
       cover_image: "",
-      public: false,
+      public: "false",
       start_date: "",
       end_date: ""
     },

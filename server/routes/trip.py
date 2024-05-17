@@ -19,7 +19,6 @@ class Trips(Resource):
                 country = data.get("country")
                 city_state = data.get("city_state")
                 vacation_type = data.get("vacation_type")
-                # cover_image = data.get("cover_image")
                 public = int(data.get("public") == 'true') 
                 start_date = datetime.datetime.strptime(data.get("start_date"), '%Y-%m-%d')
                 end_date = datetime.datetime.strptime(data.get("end_date"), '%Y-%m-%d')

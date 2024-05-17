@@ -33,7 +33,7 @@ class Posts(Resource):
                 return new_post.to_dict(), 201
             
             except ValueError:
-                return {"error": "Feeling Score must be between 0 and 10"}
+                return {"error": "Feeling Score must be between 0 and 5"}
     
         else:
             return {"error" : "Not Authorized"}, 401
@@ -79,5 +79,9 @@ class PostById(Resource):
                     return {"error": "Feeling Score must be between 0 and 5"}, 422
                 except IntegrityError:
                     return {"error": "Title is required"}, 422
+            else:
+                return {"error" : "Not Authorized"}, 401
+        else:
+            return {}, 404
         
 api.add_resource(PostById, '/api/posts/<int:id>')
