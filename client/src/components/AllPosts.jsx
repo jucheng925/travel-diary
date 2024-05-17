@@ -9,13 +9,13 @@ const AllPosts = () => {
   const { currentUser } = useContext(UserContext)
   const [displayPosts, setDisplayPosts] = useState(currentUser.posts)
 
-  const sortedPosts = currentUser.posts.sort((a, b) => new Date(b.post_date) - new Date(a.post_date))
+  const sortedPosts =  currentUser.posts.sort((a, b) => new Date(b.post_date) - new Date(a.post_date)) 
 
   const searchPosts = (term) =>{
-    const searchPosts = sortedPosts.filter(post => post.title.toLowerCase().includes(term.toLowerCase()) || 
+    const searchPosts = sortedPosts?.filter(post => post.title.toLowerCase().includes(term.toLowerCase()) || 
                       post.body.toLowerCase().includes(term.toLowerCase()) ||
                       post.trip.country.toLowerCase().includes(term.toLowerCase()) ||
-                      post.trip.city_state.toLowerCase().includes(term.toLowerCase()))
+                      post.trip.city_state?.toLowerCase().includes(term.toLowerCase()))
     setDisplayPosts(searchPosts)
   }
 
