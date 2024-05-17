@@ -9,8 +9,7 @@ const AllPosts = () => {
   const { currentUser } = useContext(UserContext)
   const [displayPosts, setDisplayPosts] = useState(currentUser.posts)
 
-  const sortedPosts = currentUser.posts
-  displayPosts.sort((a, b) => new Date(b.post_date) - new Date(a.post_date))
+  const sortedPosts = currentUser.posts.sort((a, b) => new Date(b.post_date) - new Date(a.post_date))
 
   const searchPosts = (term) =>{
     const searchPosts = sortedPosts.filter(post => post.title.toLowerCase().includes(term.toLowerCase()) || 
