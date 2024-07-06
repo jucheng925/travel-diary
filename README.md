@@ -33,6 +33,8 @@ Check to see if you are in virtual environment. If not, enter the virtual enviro
 
 To prepopulate the database with seed data, run `python seed.py` in the server folder.
 
+To quickly view the functionality of the website, you can log in as "bob", "kim", or "susan" with password "test".
+
 ## Future Plans
 Currently, this project is not deployment ready as I feel like there are still many improvements to work on. I want to organize my code a little better, see if there any ways to reduce code repetition and work on styling. 
 
