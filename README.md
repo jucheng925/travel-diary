@@ -28,12 +28,14 @@ cd server
 pipenv install
 ```
 *Development Environment*
+
 To run the react server: `npm run dev` 
 It will be running on the default port 5173.
 
 Check to see if you are in virtual environment. If not, enter the virtual environment by `pipenv shell`. To run the backend server `python app.py` which will be running on port 5555.
 
 *Production Environment*
+
 To start the app: `gunicorn --chdir server app:app`
 
 To prepopulate the database with seed data, run `python seed.py` in the server folder.
