@@ -15,6 +15,7 @@ There are a total of 5 models in the project (user, trip, attendance, offer and 
 There are a total of 3 many-to-many relationships between user and trip with a different association objects. Each of these relationships are independent from one another. For example, a user's attendance to a trip does not necessarily mean the user will write a post about that trip, nor does it indicate that an offer/invitation to collaborate will be made for the trip.
 
 ## Get Started
+
 Install the require packages (client-side):
 ```
 cd client
@@ -25,11 +26,14 @@ Install the require packages (server-side):
 cd server
 pipenv install
 ```
-
+*Development Environment*
 To run the react server: `npm run dev` 
 It will be running on the default port 5173.
 
 Check to see if you are in virtual environment. If not, enter the virtual environment by `pipenv shell`. To run the backend server `python app.py` which will be running on port 5555.
+
+*Production Environment*
+To start the app: `gunicorn --chdir server app:app`
 
 To prepopulate the database with seed data, run `python seed.py` in the server folder.
 
