@@ -33,8 +33,8 @@ class Offer(db.Model, SerializerMixin):
             raise ValueError("Status must be pending or accepted or declined")
         return status
     
-    @validates("trip")
-    def check_trip(self, key, trip):
-        if trip.public == False:
-            raise ValueError ("Trip must be public")
-        return trip
+    # @validates("trip")
+    # def check_trip(self, key, trip):
+    #     if trip.public == False:
+    #         raise ValueError ("Trip must be public")
+    #     return trip

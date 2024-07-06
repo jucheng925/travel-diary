@@ -13,6 +13,8 @@ flask-migrate = "*"
 flask-bcrypt = "*"
 python-dotenv = "*"
 cloudinary = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
